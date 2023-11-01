@@ -1,5 +1,5 @@
 {
-  "name": "proyecto_aura_front",
+  "name": "proyecto_aura",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,19 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
-    "next": "latest"
-  },
-  "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
-    "@types/node": "latest",
-    "@types/react-dom": "latest",
-    "autoprefixer": "latest",
-    "postcss": "latest",
-    "tailwindcss": "latest",
-    "eslint": "latest",
-    "eslint-config-next": "latest"
+    "@types/node": "20.7.2",
+    "@types/react": "18.2.23",
+    "@types/react-dom": "18.2.8",
+    "autoprefixer": "10.4.16",
+    "bootstrap": "^5.3.2",
+    "date-fns": "^2.30.0",
+    "eslint": "8.50.0",
+    "eslint-config-next": "13.5.3",
+    "next": "13.5.3",
+    "postcss": "8.4.31",
+    "react": "18.2.0",
+    "react-calendar": "^4.6.1",
+    "react-dom": "18.2.0",
+    "react-router-dom": "^6.16.0",
+    "sweetalert2": "^11.7.32",
+    "tailwindcss": "3.3.3",
+    "typescript": "5.2.2"
   }
 }
