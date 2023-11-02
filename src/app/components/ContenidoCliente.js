@@ -3,17 +3,68 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import "../../styles/StylesContenidoCliente.css";
 
+import Swal from 'sweetalert2';
+
 const ContenidoCliente = () => {
     const navigate = useRouter();
     const [notes, setNotes] = useState('');
+    const nombreCliente = "Manuel";
+    const motivo = "Mantenimiento de pc";
 
-    // Función para actualizar el estado "notes"
     const functionNotes = (e) => {
+
         setNotes(e.target.value);
     };
 
+    function funtionDocument() {
+        alert("documentos")
+    }
+
+    function funtionHistorial() {
+        alert("historial")
+    }
+
+    function saveNote() {
+        Swal.fire(
+            'Exito',
+            'Su nota se a guardado',
+            'success'
+        )    }
+
+    function funtionAtras() {
+        navigate.push('/homePageLink');
+    }
+
+    function funtionModificar() {
+        alert("modificar")
+    }
+
+    function funtionEliminar() {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción eliminará la cuenta del cliente. ¿Estás seguro de que deseas continuar?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Cliente eliminado', '', 'success');
+
+                setTimeout(() => {
+                    navigate.push('/homePageLink');
+                }, 2000);
+            }
+        });
+    }
+
+
     return (
         <div className="container-cliente">
+
+            <button onClick={funtionAtras} className="custom-button">Regresar</button>
+
+
 
             <div className="card-information">
                 <div className="cardCliente">
@@ -21,27 +72,23 @@ const ContenidoCliente = () => {
                         <img src={"/assets/client.svg"} alt="cliente.png" />
                     </div>
                     <div className="card__descr-wrapper">
-                        <p className="card__title">Project</p>
+                        <p className="card__title">{nombreCliente}</p>
                         <p className="card__descr">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque blanditiis nemo fugit autem possimus, magnam consequatur sint esse.
+                            {motivo}
                         </p>
                         <div className="card__links">
                             <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" className="svg">
-                                    <path d="M562.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l-1.6-1.1..."></path>
-                                </svg>
-                                <a className="link" href="#">Preview</a>
+                                <a onClick={funtionModificar} className="link">Modificar</a>
                             </div>
                             <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" className="svg">
-                                    <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0 2 2.3-3.6 5.2-3.6 3-0.3 5.6 1.3 5.6 3.6..."></path>
-                                </svg>
-                                <a className="link" href="#">Code</a>
+
+                                <a onClick={funtionEliminar} className="link" >Eliminar</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <div className="content-container">
                 <div className="card-text">
@@ -52,9 +99,15 @@ const ContenidoCliente = () => {
                             value={notes}
                             onChange={functionNotes}
                         ></textarea>
-                        <button>Guardar nota</button>
+
+                        <div className="conBtn">
+                            <button onClick={saveNote}>Guardar Nota</button>
+                        </div>
+
+
                     </form>
                 </div>
+
 
                 <div className="folders">
                     <div className="cardDocumentos">
@@ -62,7 +115,7 @@ const ContenidoCliente = () => {
                             <p className="text-title">Documentos</p>
                             <p className="text-body">Aqui puedes ver todos los documentos de tu cliente</p>
                         </div>
-                        <button class="card-button">More info</button>
+                        <button onClick={funtionDocument} class="card-button">Ver</button>
                     </div>
 
                     <div className="cardDocumentos">
@@ -70,8 +123,14 @@ const ContenidoCliente = () => {
                             <p className="text-title">Historial</p>
                             <p className="text-body">Aqui puedes ver el historial de trabajo con tu cliente</p>
                         </div>
-                        <button className="card-button">More info</button>
-                    </div> </div>
+                        <button onClick={funtionHistorial} className="card-button">Ver</button>
+                    </div>
+
+
+                </div>
+
+
+
             </div>
         </div>
     );
