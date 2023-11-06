@@ -41,6 +41,7 @@
 
 /*css del input*/
 .group {
+    margin-bottom: 10px;
     display: flex;
     line-height: 28px;
     align-items: center;
@@ -302,7 +303,6 @@
     object-fit: contain;
 }
 
-/*start media query*/
 @media screen and (min-width: 320px) {
     .sol_card_top_3 {
         position: relative;
