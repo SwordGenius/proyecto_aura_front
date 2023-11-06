@@ -1,14 +1,32 @@
 .container-home {
     display: flex;
     background-color: #ffffff;
+    width: 100%;
+    height: auto;
+}
 
+.separator{
 }
 
 .section-left {
     width: 250px;
     flex-grow: 0;
-   /* border-right: 1px solid #000; /* Línea divisoria negra en el lado derecho */
+    position: relative;
 }
+
+.separator {
+    width: 1px;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 250px;
+    margin-left: -0.5px;
+}@media screen and (max-width: 767px) {
+    .separator {}
+}
+
+
 
 .section-right {
     width: calc(100% - 300px); /* Restar el ancho de la sección izquierda */

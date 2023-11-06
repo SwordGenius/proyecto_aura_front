@@ -152,7 +152,7 @@ const AddQuerry = () => {
                         <label>
                             <input
                                 className="input"
-                                type="text"
+                                type="date"
                                 placeholder="xx/xx/xxxx"
                                 required=""
                                 value={fecha}
