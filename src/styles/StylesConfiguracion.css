@@ -24,7 +24,7 @@
 .carduser {
     width: 590px;
     height: 254px;
-    background: #f5f5f5;
+    background: #ffffff;
     padding: 2rem 1.5rem;
     transition: box-shadow .3s ease, transform .2s ease;
 }
@@ -35,41 +35,18 @@
     justify-content: center;
     align-items: center;
     transition: transform .2s ease, opacity .2s ease;
+    font-size: 20px;
 }
 
 /*Image*/
 .card-avatar {
-    --size: 60px;
+    --size: 100px;
     background: linear-gradient(to top, #f1e1c1 0%, #2ba8fb 100%);
     width: var(--size);
     height: var(--size);
     border-radius: 50%;
     transition: transform .2s ease;
     margin-bottom: 1rem;
-}
-
-
-/*Card footer*/
-.card-social {
-    transform: translateY(200%);
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    opacity: 0;
-    transition: transform .2s ease, opacity .2s ease;
-}
-
-.card-social__item {
-    list-style: none;
-}
-
-.card-social__item svg {
-    display: block;
-    height: 18px;
-    width: 18px;
-    fill: #515F65;
-    cursor: pointer;
-    transition: fill 0.2s ease ,transform 0.2s ease;
 }
 
 /*Text*/
@@ -86,9 +63,7 @@
 }
 
 /*Hover*/
-.carduser:hover {
-    box-shadow: 0 8px 50px #23232333;
-}
+
 
 .carduser:hover .card-info {
     transform: translateY(-5%);
@@ -107,3 +82,81 @@
 .card-avatar:hover {
     transform: scale(1.1);
 }
+
+
+/*css de los bototnes de eliminar y modificar*/
+
+.card-btns{
+    display: flex;
+    gap: 20px;
+}
+
+
+.btnOption {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: rgba(255, 255, 255, 0.726);
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.btnOption:hover {
+    background-color: #6fc5ff;
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.btnOption:active {
+    transform: translateY(-1px);
+    background-color: #6fc5ff;
+}
+
+
+/*estilos para la ventana flotante*/
+
+/* Estilo para la ventana emergente de edición */
+.edit-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    max-width: 300px;
+    text-align: center;
+}
+
+.edit-popup input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.edit-popup button {
+    background: #6fc5ff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-popup button:hover {
+    background: #0056b3;
+}
+
+

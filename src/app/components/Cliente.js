@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from "react";
-import "../../styles/StylesPacientes.css";
+import "../../styles/StylesCliente.css";
 import { useRouter } from "next/navigation";
 
 const Cliente = () => {
