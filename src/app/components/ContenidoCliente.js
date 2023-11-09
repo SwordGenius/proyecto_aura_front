@@ -17,7 +17,7 @@ const ContenidoCliente = () => {
     };
 
     function funtionDocument() {
-        alert("documentos")
+        navigate.push('/documentosLink');
     }
 
     function funtionHistorial() {
