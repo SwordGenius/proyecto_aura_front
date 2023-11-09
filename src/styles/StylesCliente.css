@@ -216,7 +216,7 @@
     content: "";
     position: absolute;
     background: rgb(85 108 214 / 5%);
-    width: 100px;
+    width: 170px;
     height: 400px;
     z-index: -1;
     transform: rotate(42deg);
@@ -337,6 +337,7 @@
     }
 }
 
-.container-pacientes, .container-cards {
-    width: 100%;
-}
+
+
+
+
