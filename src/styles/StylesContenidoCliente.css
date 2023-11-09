@@ -1,0 +1,249 @@
+/*No es 100% responsivo faltan modificaciones*/
+
+.container-cliente {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Agrega media query para pantallas pequeñas (menos de 768px) */
+@media (max-width: 768px) {
+    .container-cliente {
+        text-align: center;
+        width: 100%;
+        height: auto;
+        margin-top: 100px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-text {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+}
+
+.card-text {
+    margin-left: 100px;
+}
+
+.folders {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 120px;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-button {
+    margin-top: 20px;
+    margin-right: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    background-color: #008bf8;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cardDocumentos {
+    margin: 0 10px;
+    width: 190px;
+    height: 254px;
+    border-radius: 20px;
+    background: #f5f5f5;
+    position: relative;
+    padding: 1.8rem;
+    border: 2px solid #c3c6ce;
+    transition: 0.5s ease-out;
+    overflow: visible;
+}
+
+.card-details {
+    color: black;
+    height: 100%;
+    gap: .5em;
+    display: grid;
+    place-content: center;
+}
+
+.card-button {
+    transform: translate(-50%, 125%);
+    width: 60%;
+    border-radius: 1rem;
+    border: none;
+    background-color: #008bf8;
+    color: #fff;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    opacity: 0;
+    transition: 0.3s ease-out;
+}
+
+.text-body {
+    color: rgb(134, 134, 134);
+}
+
+/*Text*/
+.text-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/*Hover*/
+.cardDocumentos:hover {
+    border-color: #008bf8;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.cardDocumentos:hover .card-button {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+}
+
+/*CSS del cuadro de texto*/
+.notes {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    width: 600px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 30px 30px -30px rgba(27, 26, 26, 0.315);
+}
+
+@media (max-width: 768px) {
+    .notes {
+        width: 100%;
+    }
+}
+
+.notes .title {
+    color: royalblue;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notes input {
+    outline: 0;
+    border: 1px solid rgb(219, 213, 213);
+    padding: 8px 14px;
+    border-radius: 8px;
+    width: 100%;
+    height: 50px;
+}
+
+.notes textarea {
+    border-radius: 8px;
+    height: 200px;
+    width: 100%;
+    resize: none;
+    outline: 0;
+    padding: 8px 14px;
+    border: 1px solid rgb(219, 213, 213);
+}
+
+.notes button {
+    align-self: flex-end;
+    padding: 8px;
+    outline: 0;
+    border: 0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #008bf8;
+    color: #fff;
+    cursor: pointer;
+}
+
+/*CSS de la card*/
+.cardCliente {
+    --font-color: #323232;
+    --bg-color: #e0e0e0;
+    width: 250px;
+    height: auto;
+    border-radius: 20px;
+    background: var(--bg-color);
+    box-shadow: -9px 9px 18px #5a5a5a, 9px -9px 18px #ffffff;
+    display: flex;
+    flex-direction: column;
+    transition: .4s;
+    position: relative;
+}
+
+.cardCliente:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 0px 10px 2px #5a5a5a;
+}
+
+.card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+}
+
+.card__descr-wrapper {
+    padding: 15px;
+    display: grid;
+}
+
+.card__title {
+    color: var(--font-color);
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 900;
+    font-size: 16px;
+}
+
+.card__descr {
+    color: var(--font-color);
+}
+
+.svg {
+    width: 25px;
+    height: 25px;
+    transform: translateY(25%);
+    fill: var(--font-color);
+}
+
+.card__links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-end;
+}
+
+.card__links .link {
+    color: var(--font-color);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.card__links .link:hover {
+    text-decoration: underline;
+}
+
+

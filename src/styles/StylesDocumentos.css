@@ -1,0 +1,27 @@
+.documentos-container{
+    width: 100%;
+    height: auto;
+}
+
+.tituloDocumentos {
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+/*para pantallas pequeñas*/
+@media (max-width: 768px) {
+
+    .tituloDocumentos {
+        font-family: "Roboto", sans-serif;
+        font-weight: bold;
+        font-size: 24px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+}
