@@ -6,11 +6,34 @@ import { useRouter } from "next/navigation";
 const Cliente = () => {
     const navigate = useRouter();
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false); // Estado para la visibilidad del modal
     const cardsPerPage = 6;
+
+    const [clientInfo, setClientInfo] = useState({ //variables donde se guardan los nuevos clientes
+        name: "",
+        lastName: "",
+        reason: "",
+    });
 
 
     function addClient() {
-        alert("cliente agregado");
+        setIsModalOpen(true);
+    }
+
+    function closeModal() {
+        // Cerrar el modal y restablecer clientInfo
+        setIsModalOpen(false);
+        setClientInfo({
+            name: "",
+            lastName: "",
+            reason: "",
+        });
+    }
+
+    function saveClient() {
+        // Realizar acciones con clientInfo
+        alert("Cliente agregado");
+        closeModal();
     }
 
     function viewClient() {
@@ -31,34 +54,6 @@ const Cliente = () => {
         {
 
             name: "Jhair",
-            info:
-                "Endodoncia",
-        },{
-            name: "Jhair",
-            info:
-                "Endodoncia",
-        },{
-            name: "Jhair",
-            info:
-                "Endodoncia",
-        },{
-            name: "Jhair",
-            info:
-                "Endodoncia",
-        },{
-            name: "Jhair",
-            info:
-                "Endodoncia",
-        },{
-            name: "Jhair",
-            info:
-                "Endodoncia",
-        },{
-            name: "jhaur",
-            info:
-                "Endodoncia",
-        }, {
-            name: "jhaur",
             info:
                 "Endodoncia",
         },
@@ -180,8 +175,57 @@ const Cliente = () => {
                     ADD CLIENT
                 </button>
             </div>
+
+
+            {isModalOpen && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={closeModal}>
+                            &times;
+                        </span>
+                        <h2>Agregar Cliente</h2>
+                        <label>Nombre:</label>
+                        <input
+                            type="text"
+                            value={clientInfo.name}
+                            onChange={(e) =>
+                                setClientInfo({
+                                    ...clientInfo,
+                                    name: e.target.value,
+                                })
+                            }
+                        />
+                        <label>Apellido:</label>
+                        <input
+                            type="text"
+                            value={clientInfo.lastName}
+                            onChange={(e) =>
+                                setClientInfo({
+                                    ...clientInfo,
+                                    lastName: e.target.value,
+                                })
+                            }
+                        />
+                        <label>Motivo:</label>
+                        <input
+                            type="text"
+                            value={clientInfo.reason}
+                            onChange={(e) =>
+                                setClientInfo({
+                                    ...clientInfo,
+                                    reason: e.target.value,
+                                })
+                            }
+                        />
+                        <button onClick={saveClient}>Guardar</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
 
 export default Cliente;
+
+
+
