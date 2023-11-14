@@ -1,68 +1,53 @@
-"use client"
+// Importa las bibliotecas y estilos necesarios
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2"; // Importa SweetAlert2
 import "../../styles/StylesAddQuery.css";
 
+// Componente principal
 const AddQuerry = () => {
     const navigate = useRouter();
+    const [clientes, setClientes] = useState(["Cliente 1", "Cliente 2", "Cliente 3"]);
 
-    const miNombre = "Jhair Alejandro Cruz Palacios"; //esta es la variable para el usuario principal
-    const [nombre, setNombre] = useState("");
-    const [apellidoPaterno, setApellidoPaterno] = useState("");
-    const [apellidoMaterno, setApellidoMaterno] = useState("");
-    const [edad, setEdad] = useState("");
+    const miNombre = "Jhair Alejandro Cruz Palacios"; // Esta es la variable para el usuario principal
     const [motivo, setMotivo] = useState("");
     const [fecha, setFecha] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    function citaAction(event) {
-        event.preventDefault(); // Previene que se actualice la pagina cuando se ingresa un dato erroneo
+    const openModal = () => {
+        setIsModalOpen(true);
 
-        if (nombre === "" || apellidoPaterno === "" || apellidoMaterno === "" || isNaN(edad) || edad < 0 || !/^\d{2}\/\d{2}\/\d{4}$/.test(fecha)) {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Por favor, complete todos los campos correctamente."
-            });
-        } else {
-            Swal.fire({
-                icon: "success",
-                title: "Cita agregada",
-                text: `Nombre: ${nombre}\nApellido Paterno: ${apellidoPaterno}\nApellido Materno: ${apellidoMaterno}\nEdad: ${edad}\nFecha: ${fecha}`
-            });
+    };
 
-            // Después de 2 segundos, la página se refrescará
-            setTimeout(() => {
-                window.location.reload();
-            }, 2000);
-        }
-    }
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
 
+    const citaAction = (event) => {
+        event.preventDefault();
 
+        alert("listo")
+    };
 
     const nombreFuntion = (event) => {
-        // Validar que no se ingresen números
         if (!/\d/.test(event.target.value)) {
             setNombre(event.target.value);
         }
     };
 
     const apellidoPaternoFuntion = (event) => {
-        // Validar que no se ingresen números
         if (!/\d/.test(event.target.value)) {
             setApellidoPaterno(event.target.value);
         }
     };
 
     const apellidoMaternoFuntion = (event) => {
-        // Validar que no se ingresen números
         if (!/\d/.test(event.target.value)) {
             setApellidoMaterno(event.target.value);
         }
     };
 
     const edadFuntion = (event) => {
-        // Validar que no se ingresen letras ni números negativos
         const value = event.target.value;
         if (!isNaN(value) && value >= 0) {
             setEdad(value);
@@ -74,8 +59,11 @@ const AddQuerry = () => {
     };
 
     const handleFechaChange = (event) => {
-        setFecha(event.target.value); // falta completar las validaciones para solo números
+        setFecha(event.target.value);
     };
+
+    // Nombres de prueba
+    const clientesDePrueba = ["Cliente 1", "Cliente 2", "Cliente 3"];
 
     return (
         <div className="query-container">
@@ -88,54 +76,6 @@ const AddQuerry = () => {
                 <div className="contenedorForm">
                     <form className="form">
                         <p className="title">Ingrese los datos de la cita</p>
-
-                        <label>
-                            <input
-                                className="input"
-                                type="text"
-                                placeholder=""
-                                required=""
-                                value={nombre}
-                                onChange={nombreFuntion}
-                            />
-                            <span>Nombre(s)</span>
-                        </label>
-
-                        <label>
-                            <input
-                                className="input"
-                                type="text"
-                                placeholder=""
-                                required=""
-                                value={apellidoPaterno}
-                                onChange={apellidoPaternoFuntion}
-                            />
-                            <span>Apellido Paterno</span>
-                        </label>
-
-                        <label>
-                            <input
-                                className="input"
-                                type="text"
-                                placeholder=""
-                                required=""
-                                value={apellidoMaterno}
-                                onChange={apellidoMaternoFuntion}
-                            />
-                            <span>Apellido Materno</span>
-                        </label>
-
-                        <label>
-                            <input
-                                className="input"
-                                type="text"
-                                placeholder=""
-                                required=""
-                                value={edad}
-                                onChange={edadFuntion}
-                            />
-                            <span>Edad</span>
-                        </label>
 
                         <label>
                             <input
@@ -161,7 +101,30 @@ const AddQuerry = () => {
                             <span>Fecha</span>
                         </label>
 
-                        <button onClick={citaAction} className="submit">Agregar</button>
+                        <button type="button" className="submit" onClick={openModal}>
+                            Seleccionar Cliente
+                        </button>
+                        <button onClick={citaAction} className="submit">
+                            Agregar Cita
+                        </button>
+
+                        {isModalOpen && (
+                            <div className="modal-container">
+                                <div className="modal-content">
+                                    <span className="modal-close" onClick={closeModal}>
+                                        &times;
+                                    </span>
+                                    <p>Lista de clientes</p>
+                                    <ul>
+                                        {clientes.map((cliente, index) => (
+                                            /*aqui se muestra la ingotmacion, cree una varibale con datos como prueba*/
+
+                                            <li key={index}>{cliente}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        )}
                     </form>
                 </div>
             </div>

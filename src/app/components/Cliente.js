@@ -6,11 +6,48 @@ import { useRouter } from "next/navigation";
 const Cliente = () => {
     const navigate = useRouter();
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false); // Estado para la visibilidad del modal
     const cardsPerPage = 6;
+
+    const [clientInfo, setClientInfo] = useState({ //variables donde se guardan los nuevos clientes
+        nombres: "",
+        apellidoPaterno: "",
+        apellidoMaterno: "",
+        edad: "",
+
+    });
+
+    const cardData = [
+        //DE AQUI SE JALARAN LOS DATOS DE NOMBRE Y MOTIVO PARA LAS CARPETAS, ESTO LO HACE DINAMICO
+
+        {
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
+        },
+
+    ];
 
 
     function addClient() {
-        alert("cliente agregado");
+        setIsModalOpen(true);
+    }
+
+    function closeModal() {
+        // Cerrar el modal y restablecer clientInfo
+        setIsModalOpen(false);
+        setClientInfo({
+            name: "",
+            lastName: "",
+            reason: "",
+        });
+    }
+
+    function saveClient() {
+        // Realizar acciones con clientInfo
+        alert("Cliente agregado");
+        closeModal();
     }
 
     function viewClient() {
@@ -25,45 +62,47 @@ const Cliente = () => {
         setCurrentCardIndex(currentCardIndex - cardsPerPage);
     }
 
-    const cardData = [
-        //DE AQUI SE JALARAN LOS DATOS DE NOMBRE Y MOTIVO PARA LAS CARPETAS, ESTO LO HACE DINAMICO
+    function handleNameChange(e) {
+        // Verifica que no haya números en el nombre
+        if (!/\d/.test(e.target.value)) {
+            setClientInfo({
+                ...clientInfo,
+                nombres: e.target.value,
+            });
+        }
+    }
 
-        {
+    function handleLastNameChange(e) {
+        // Verifica que no haya números en el apellido
+        if (!/\d/.test(e.target.value)) {
+            setClientInfo({
+                ...clientInfo,
+                apellidoPaterno: e.target.value,
+            });
+        }
+    }
 
-            name: "Jhair",
-            info:
-                "Endodoncia",
-        },{
-            name: "Jhair",
-            info:
-                "Endodoncia",
-        },{
-            name: "Jhair",
-            info:
-                "Endodoncia",
-        },{
-            name: "Jhair",
-            info:
-                "Endodoncia",
-        },{
-            name: "Jhair",
-            info:
-                "Endodoncia",
-        },{
-            name: "Jhair",
-            info:
-                "Endodoncia",
-        },{
-            name: "jhaur",
-            info:
-                "Endodoncia",
-        }, {
-            name: "jhaur",
-            info:
-                "Endodoncia",
-        },
+    function handleMaternoChange(e) {
+        // Verifica que no haya números en el apellido materno
+        if (!/\d/.test(e.target.value)) {
+            setClientInfo({
+                ...clientInfo,
+                apellidoMaterno: e.target.value,
+            });
+        }
+    }
 
-    ];
+    function handleEdadChange(e) {
+        // Verifica que solo haya números en la edad
+        if (/^\d+$/.test(e.target.value)) {
+            setClientInfo({
+                ...clientInfo,
+                edad: e.target.value,
+            });
+        }
+    }
+
+
 
     return (
         <div className="container-pacientes">
@@ -180,8 +219,50 @@ const Cliente = () => {
                     ADD CLIENT
                 </button>
             </div>
+
+
+            {isModalOpen && (
+
+                <div className="modal">
+
+                    <div className="modal-content">
+                        <span className="close" onClick={closeModal}>
+                            &times;
+                        </span>
+                        <h2>Agregar Cliente</h2>
+                        <label>Nombres:</label>
+                        <input
+                            type="text"
+                            value={clientInfo.nombres}
+                            onChange={handleNameChange}
+                        />
+                        <label>Apellido Paterno:</label>
+                        <input
+                            type="text"
+                            value={clientInfo.apellidoPaterno}
+                            onChange={handleLastNameChange}
+                        />
+                        <label>Apellido Materno:</label>
+                        <input
+                            type="text"
+                            value={clientInfo.apellidoMaterno}
+                            onChange={handleMaternoChange}
+                        />
+                        <label>Edad:</label>
+                        <input
+                            type="text"
+                            value={clientInfo.edad}
+                            onChange={handleEdadChange}
+                        />
+                        {/* ... (otros elementos) */}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
 
 export default Cliente;
+
+
+
