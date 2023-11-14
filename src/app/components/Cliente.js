@@ -10,10 +10,24 @@ const Cliente = () => {
     const cardsPerPage = 6;
 
     const [clientInfo, setClientInfo] = useState({ //variables donde se guardan los nuevos clientes
-        name: "",
-        lastName: "",
-        reason: "",
+        nombres: "",
+        apellidoPaterno: "",
+        apellidoMaterno: "",
+        edad: "",
+
     });
+
+    const cardData = [
+        //DE AQUI SE JALARAN LOS DATOS DE NOMBRE Y MOTIVO PARA LAS CARPETAS, ESTO LO HACE DINAMICO
+
+        {
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
+        },
+
+    ];
 
 
     function addClient() {
@@ -48,17 +62,47 @@ const Cliente = () => {
         setCurrentCardIndex(currentCardIndex - cardsPerPage);
     }
 
-    const cardData = [
-        //DE AQUI SE JALARAN LOS DATOS DE NOMBRE Y MOTIVO PARA LAS CARPETAS, ESTO LO HACE DINAMICO
+    function handleNameChange(e) {
+        // Verifica que no haya números en el nombre
+        if (!/\d/.test(e.target.value)) {
+            setClientInfo({
+                ...clientInfo,
+                nombres: e.target.value,
+            });
+        }
+    }
 
-        {
+    function handleLastNameChange(e) {
+        // Verifica que no haya números en el apellido
+        if (!/\d/.test(e.target.value)) {
+            setClientInfo({
+                ...clientInfo,
+                apellidoPaterno: e.target.value,
+            });
+        }
+    }
 
-            name: "Jhair",
-            info:
-                "Endodoncia",
-        },
+    function handleMaternoChange(e) {
+        // Verifica que no haya números en el apellido materno
+        if (!/\d/.test(e.target.value)) {
+            setClientInfo({
+                ...clientInfo,
+                apellidoMaterno: e.target.value,
+            });
+        }
+    }
 
-    ];
+    function handleEdadChange(e) {
+        // Verifica que solo haya números en la edad
+        if (/^\d+$/.test(e.target.value)) {
+            setClientInfo({
+                ...clientInfo,
+                edad: e.target.value,
+            });
+        }
+    }
+
+
 
     return (
         <div className="container-pacientes">
@@ -178,46 +222,39 @@ const Cliente = () => {
 
 
             {isModalOpen && (
+
                 <div className="modal">
+
                     <div className="modal-content">
                         <span className="close" onClick={closeModal}>
                             &times;
                         </span>
                         <h2>Agregar Cliente</h2>
-                        <label>Nombre:</label>
+                        <label>Nombres:</label>
                         <input
                             type="text"
-                            value={clientInfo.name}
-                            onChange={(e) =>
-                                setClientInfo({
-                                    ...clientInfo,
-                                    name: e.target.value,
-                                })
-                            }
+                            value={clientInfo.nombres}
+                            onChange={handleNameChange}
                         />
-                        <label>Apellido:</label>
+                        <label>Apellido Paterno:</label>
                         <input
                             type="text"
-                            value={clientInfo.lastName}
-                            onChange={(e) =>
-                                setClientInfo({
-                                    ...clientInfo,
-                                    lastName: e.target.value,
-                                })
-                            }
+                            value={clientInfo.apellidoPaterno}
+                            onChange={handleLastNameChange}
                         />
-                        <label>Motivo:</label>
+                        <label>Apellido Materno:</label>
                         <input
                             type="text"
-                            value={clientInfo.reason}
-                            onChange={(e) =>
-                                setClientInfo({
-                                    ...clientInfo,
-                                    reason: e.target.value,
-                                })
-                            }
+                            value={clientInfo.apellidoMaterno}
+                            onChange={handleMaternoChange}
                         />
-                        <button onClick={saveClient}>Guardar</button>
+                        <label>Edad:</label>
+                        <input
+                            type="text"
+                            value={clientInfo.edad}
+                            onChange={handleEdadChange}
+                        />
+                        {/* ... (otros elementos) */}
                     </div>
                 </div>
             )}
