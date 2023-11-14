@@ -58,7 +58,7 @@ const Content = () => {
     return (
         <div className="container-home">
             <section className="section-left">
-                <img className="imgLogo" src={"/assets/Aura-logo2.png"} alt="AURA-logo.png" />
+                <img className="imgLogo" src={"/assets/Aura-logo2.png"} alt="AURA-logo.png" />  
                 <div className="container">
                     <form className="botonesPrincipales">
                         <label>

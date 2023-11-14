@@ -18,28 +18,28 @@ const Historial = () => {
             comentario: 'dientes sucios con caries'
         },
         {
-            id: 1,
+            id: 5,
             nombre: 'Juan',
             motivo: 'Endodoncia',
             fecha: '24/12/23',
             comentario: 'dientes sucios con caries'
         },
         {
-            id: 1,
+            id: 6,
             nombre: 'Juan',
             motivo: 'Endodoncia',
             fecha: '24/12/23',
             comentario: 'dientes sucios con caries'
         },
         {
-            id: 1,
+            id: 7,
             nombre: 'Juan',
             motivo: 'Endodoncia',
             fecha: '24/12/23',
             comentario: 'dientes sucios con caries'
         },
         {
-            id: 1,
+            id: 8,
             nombre: 'Juan',
             motivo: 'Endodoncia',
             fecha: '24/12/23',
@@ -57,10 +57,10 @@ const Historial = () => {
                         <div>
                             <h3>Historial</h3>
                         </div>
-                        <div className="pdf-section">
-                            <div className="pdf-grid">
+                        <div className="historial-section">
+                            <div className="historial-grid">
                                 {dataExample.map((historial) => (
-                                    <div key={historial.id} className="pdf-item">
+                                    <div key={historial.id} className="historial-item">
                                         <p>Nombre: {historial.nombre}</p>
                                         <p>Motivo: {historial.motivo}</p>
                                         <p>Fecha: {historial.fecha}</p>

@@ -33,7 +33,7 @@
     height: auto;
 }
 
-
+/*boton regresar*/
 .custom-button {
     margin-top: 20px;
     margin-right: 20px;
@@ -41,7 +41,7 @@
     top: 0;
     right: 0;
     z-index: 1;
-    background-color: #008bf8;
+    background-color: #008df8;   
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -72,6 +72,12 @@
     width: 1100px;
 }
 
+.pdf-item:hover {
+    scale: 1.05;
+    transition-duration: 700ms;
+
+}
+
 .pdf-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 columnas, cada una con el mismo ancho */
@@ -79,8 +85,11 @@
 }  
 .pdf-item {
     padding: 16px;
-    border: 0.1px solid #ccc;
+    border: 0.1px solid #fff;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    box-shadow: 5px 5px 10px #b8b7b7;
+    border-radius: 25px;
+
 }
