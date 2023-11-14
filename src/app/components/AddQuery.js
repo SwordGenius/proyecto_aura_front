@@ -1,4 +1,3 @@
-// Importa las bibliotecas y estilos necesarios
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2"; // Importa SweetAlert2
@@ -12,58 +11,64 @@ const AddQuerry = () => {
     const miNombre = "Jhair Alejandro Cruz Palacios"; // Esta es la variable para el usuario principal
     const [motivo, setMotivo] = useState("");
     const [fecha, setFecha] = useState("");
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isClientListModalOpen, setIsClientListModalOpen] = useState(false);
+    const [isAddClientModalOpen, setIsAddClientModalOpen] = useState(false);
+    const [clientInfo, setClientInfo] = useState({
+        nombres: "",
+        apellidoPaterno: "",
+        apellidoMaterno: "",
+        edad: ""
+    });
 
-    const openModal = () => {
-        setIsModalOpen(true);
-
+    const openClientListModal = () => {
+        setIsAddClientModalOpen(false); // Cerrar el modal de Agregar Cliente
+        setIsClientListModalOpen(true);
     };
 
-    const closeModal = () => {
-        setIsModalOpen(false);
+    const closeClientListModal = () => {
+        setIsClientListModalOpen(false);
+    };
+
+    const openAddClientModal = () => {
+        setIsClientListModalOpen(false); // Cerrar el modal de Lista de Clientes
+        setIsAddClientModalOpen(true);
+    };
+
+    const closeAddClientModal = () => {
+        setIsAddClientModalOpen(false);
+    };
+
+    const handleNameChange = (event) => {
+        setClientInfo({ ...clientInfo, nombres: event.target.value });
+    };
+
+    const handleLastNameChange = (event) => {
+        setClientInfo({ ...clientInfo, apellidoPaterno: event.target.value });
+    };
+
+    const handleMaternoChange = (event) => {
+        setClientInfo({ ...clientInfo, apellidoMaterno: event.target.value });
+    };
+
+    const handleEdadChange = (event) => {
+        setClientInfo({ ...clientInfo, edad: event.target.value });
+    };
+
+    const agregarCliente = () => {
+        alert("cliente agregado");
+        closeClientListModal();
+    };
+
+    const seleccionarCliente = () => {
+        alert("seleccion cliente");
+        closeAddClientModal();
     };
 
     const citaAction = (event) => {
         event.preventDefault();
 
-        alert("listo")
+        alert("listo");
     };
-
-    const nombreFuntion = (event) => {
-        if (!/\d/.test(event.target.value)) {
-            setNombre(event.target.value);
-        }
-    };
-
-    const apellidoPaternoFuntion = (event) => {
-        if (!/\d/.test(event.target.value)) {
-            setApellidoPaterno(event.target.value);
-        }
-    };
-
-    const apellidoMaternoFuntion = (event) => {
-        if (!/\d/.test(event.target.value)) {
-            setApellidoMaterno(event.target.value);
-        }
-    };
-
-    const edadFuntion = (event) => {
-        const value = event.target.value;
-        if (!isNaN(value) && value >= 0) {
-            setEdad(value);
-        }
-    };
-
-    const motivoFuntion = (event) => {
-        setMotivo(event.target.value);
-    };
-
-    const handleFechaChange = (event) => {
-        setFecha(event.target.value);
-    };
-
-    // Nombres de prueba
-    const clientesDePrueba = ["Cliente 1", "Cliente 2", "Cliente 3"];
 
     return (
         <div className="query-container">
@@ -84,7 +89,7 @@ const AddQuerry = () => {
                                 placeholder=""
                                 required=""
                                 value={motivo}
-                                onChange={motivoFuntion}
+                                onChange={(e) => setMotivo(e.target.value)}
                             />
                             <span>Motivo</span>
                         </label>
@@ -96,32 +101,77 @@ const AddQuerry = () => {
                                 placeholder="xx/xx/xxxx"
                                 required=""
                                 value={fecha}
-                                onChange={handleFechaChange}
+                                onChange={(e) => setFecha(e.target.value)}
                             />
                             <span>Fecha</span>
                         </label>
 
-                        <button type="button" className="submit" onClick={openModal}>
+                        <button type="button" className="submit" onClick={openClientListModal}>
                             Seleccionar Cliente
                         </button>
                         <button onClick={citaAction} className="submit">
                             Agregar Cita
                         </button>
 
-                        {isModalOpen && (
+                        <button type="button" className="submit" onClick={openAddClientModal}>
+                            Agregar Cliente
+                        </button>
+
+                        {/* Modal para Lista de Clientes */}
+                        {isClientListModalOpen && (
                             <div className="modal-container">
-                                <div className="modal-content">
-                                    <span className="modal-close" onClick={closeModal}>
+                                <div className="modal-content1">
+                                    <span className="modal-close1" onClick={closeClientListModal}>
                                         &times;
                                     </span>
                                     <p>Lista de clientes</p>
                                     <ul>
                                         {clientes.map((cliente, index) => (
-                                            /*aqui se muestra la ingotmacion, cree una varibale con datos como prueba*/
-
                                             <li key={index}>{cliente}</li>
                                         ))}
                                     </ul>
+                                    <button type="button" onClick={seleccionarCliente}>
+                                        Aceptar
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Modal para Agregar Cliente */}
+                        {isAddClientModalOpen && (
+                            <div className="modal-container">
+                                <div className="modal-content1">
+                                    <span className="modal-close1" onClick={closeAddClientModal}>
+                                        &times;
+                                    </span>
+                                    <h2>Agregar Cliente</h2>
+                                    <label>Nombres:</label>
+                                    <input
+                                        type="text"
+                                        value={clientInfo.nombres}
+                                        onChange={handleNameChange}
+                                    />
+                                    <label>Apellido Paterno:</label>
+                                    <input
+                                        type="text"
+                                        value={clientInfo.apellidoPaterno}
+                                        onChange={handleLastNameChange}
+                                    />
+                                    <label>Apellido Materno:</label>
+                                    <input
+                                        type="text"
+                                        value={clientInfo.apellidoMaterno}
+                                        onChange={handleMaternoChange}
+                                    />
+                                    <label>Edad:</label>
+                                    <input
+                                        type="text"
+                                        value={clientInfo.edad}
+                                        onChange={handleEdadChange}
+                                    />
+                                    <button type="button" onClick={agregarCliente}>
+                                        Aceptar
+                                    </button>
                                 </div>
                             </div>
                         )}
