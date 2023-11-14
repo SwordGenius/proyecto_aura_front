@@ -1,4 +1,3 @@
-// Importa las bibliotecas y estilos necesarios
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2"; // Importa SweetAlert2
