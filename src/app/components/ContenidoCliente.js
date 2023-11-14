@@ -21,7 +21,7 @@ const ContenidoCliente = () => {
     }
 
     function funtionHistorial() {
-        alert("historial")
+       navigate.push('/historial')
     }
 
     function saveNote() {
@@ -63,9 +63,6 @@ const ContenidoCliente = () => {
         <div className="container-cliente">
 
             <button onClick={funtionAtras} className="custom-button">Regresar</button>
-
-
-
             <div className="card-information">
                 <div className="cardCliente">
                     <div className="card__img">
@@ -104,10 +101,8 @@ const ContenidoCliente = () => {
                             <button onClick={saveNote}>Guardar Nota</button>
                         </div>
 
-
                     </form>
                 </div>
-
 
                 <div className="folders">
                     <div className="cardDocumentos">

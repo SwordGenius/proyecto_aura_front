@@ -74,13 +74,15 @@
 
 .pdf-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas, cada una con el mismo ancho */
-    gap: 16px; /* Espacio entre las columnas */
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 16px;
 }  
 .pdf-item {
     padding: 16px;
-    border: 0.1px solid #ccc;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    border-radius: 32px;
+    background: #c1c1c12e;
+    color: #000000;
 }
