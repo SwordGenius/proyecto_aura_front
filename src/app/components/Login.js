@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 import "../../styles/StylesLoginAndSignUp.css"
 import signUp from "@/app/components/SignUp";
 import {useRouter} from "next/navigation";
+import swal from "sweetalert2";
+import axios from "axios";
 
 function Login() {
     const navigate=useRouter()
@@ -11,9 +13,32 @@ function Login() {
     const [password, setPassword] = useState("");
 
 
-    function signIn() {
-        alert(email)
-        alert(password)
+    async function signIn(event) {
+        event.preventDefault()
+        try {
+            await axios.post("http://localhost:3300/auth/login", {
+                email: email,
+                password: password
+            }).then((response) => {
+                console.log(response);
+                navigate.push("/homePageLink")
+            }).catch((error) => {
+                console.log(error);
+            });
+            await swal.fire({
+                icon: "success",
+                title: "Success",
+                text: "Acceso correcto",
+
+            });
+        }catch (error) {
+            console.log(error);
+            await swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Error al iniciar sesion"
+            });
+        }
     }
 
     function signUp() {
