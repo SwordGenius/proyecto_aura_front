@@ -3,12 +3,14 @@
     height: auto;
 }
 
-.tituloDocumentos {
-    font-family: "Roboto", sans-serif;
-    font-weight: bold;
-    font-size: 24px;
+.column-center h3 {
+    font-family: "Roboto";
+    font-weight: 300;
     margin-top: 20px;
     margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-align: center;
+    font-size: 30px;
 }
 
 
@@ -22,12 +24,16 @@
         margin-top: 20px;
         margin-bottom: 20px;
         text-align: center;
+        
+
     }
 
 }
 
 .container-home {
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #ffffff;
     width: 100%;
     height: auto;
@@ -41,11 +47,11 @@
     top: 0;
     right: 0;
     z-index: 1;
-    background-color: #008df8;   
+    background-color: #568AC7;   
     color: #fff;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
 }
 
@@ -60,12 +66,13 @@
 .column-center{
     margin: 26px;
     display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 
-.column-center h3{
-    font-size: 22px;
-}
+
 
 .pdf-section{
     margin-top: 64px;

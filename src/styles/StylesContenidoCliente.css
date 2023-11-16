@@ -48,12 +48,19 @@
     top: 0;
     right: 0;
     z-index: 1;
-    background-color: #008bf8;
+    background-color: #2d70bc;
     color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    border-radius: 30px;
+}
+
+.custom-button:hover{
+    scale: 1.05;
+    transition-duration: 300ms;
+
 }
 
 .cardDocumentos {
@@ -82,7 +89,7 @@
     width: 60%;
     border-radius: 1rem;
     border: none;
-    background-color: #008bf8;
+    background-color: #568AC7;
     color: #fff;
     font-size: 1rem;
     padding: .5rem 1rem;
@@ -95,17 +102,20 @@
 
 .text-body {
     color: rgb(134, 134, 134);
+    text-align: center;
 }
 
 /*Text*/
 .text-title {
     font-size: 1.5em;
     font-weight: bold;
+    text-align: center;
+
 }
 
 /*Hover*/
 .cardDocumentos:hover {
-    border-color: #008bf8;
+    border-color: #568AC7;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -135,7 +145,7 @@
 }
 
 .notes .title {
-    color: royalblue;
+    color: #3479c8;
     font-size: 30px;
     font-weight: 600;
     letter-spacing: -1px;
@@ -172,9 +182,16 @@
     border-radius: 8px;
     font-size: 16px;
     font-weight: 500;
-    background-color: #008bf8;
+    background-color: #568AC7;
     color: #fff;
     cursor: pointer;
+    border-radius: 30px;
+    
+}
+
+.notes button:hover {
+    transform: scale(1.05);
+    transition-duration: 300ms;
 }
 
 /*CSS de la card*/
@@ -246,4 +263,6 @@
     text-decoration: underline;
 }
 
-
+.folders{
+    
+}

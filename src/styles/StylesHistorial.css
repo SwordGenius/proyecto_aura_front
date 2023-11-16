@@ -11,6 +11,8 @@
     margin-bottom: 20px;
 }
 
+
+
 /*para pantallas pequeñas*/
 @media (max-width: 768px) {
 
@@ -24,9 +26,32 @@
     }
 
 }
+/* cargando le doc*/
+.loading p{
+
+    font-size: 30px;
+    font-family: roboto;
+    font-weight: lighter;
+    margin-top: 20px;
+}
+
+/*no hay info*/
+.loadingnoInfo p{
+
+    font-size: 30px;
+    font-family: roboto;
+    font-weight: lighter;
+    margin-top: 20px;
+    color: #000000;
+}
+
+
+
 
 .container-home {
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #ffffff;
     width: 100%;
     height: auto;
@@ -40,12 +65,13 @@
     top: 0;
     right: 0;
     z-index: 1;
-    background-color: #008bf8;
+    background-color: #568AC7;
     color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    border-radius: 20px;
 }
 
 .section-right {
@@ -62,9 +88,7 @@
     flex-direction: column;
 }
 
-.column-center h3{
-    font-size: 22px;
-}
+
 
 .historial-section {
     margin-top: 64px;
@@ -84,6 +108,7 @@
     background: #c1c1c12e;
     color: #000000;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .historial-item:hover{

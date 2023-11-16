@@ -52,14 +52,13 @@ const Documentos = () => {
             img: 25,
         },
         
+        
     ]
 
     return (
         <>
             <div className="container-home">
-                <Sidebar name='Documentos'/>
-                <button onClick={funtionAtras} className="custom-button">Regresar</button>
-                <section className="section-right">
+                    <button onClick={funtionAtras} className="custom-button">Regresar</button>
                     <div className="column-center">
                         <div>
                             <h3>Documentos</h3>
@@ -78,7 +77,6 @@ const Documentos = () => {
                             </div>
                         </div>
                     </div>
-                </section>
             </div>
         </>
     );
