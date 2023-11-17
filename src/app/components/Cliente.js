@@ -1,24 +1,23 @@
 "use client"
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import "../../styles/StylesCliente.css";
 import { useRouter } from "next/navigation";
 
 const Cliente = () => {
     const navigate = useRouter();
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
-    const [isModalOpen, setIsModalOpen] = useState(false); // Estado para la visibilidad del modal
     const cardsPerPage = 6;
-
-    const [clientInfo, setClientInfo] = useState({ //variables donde se guardan los nuevos clientes
+    const [isAddClientModalOpen, setIsAddClientModalOpen] = useState(false);
+    const [clientInfo, setClientInfo] = useState({
         nombres: "",
         apellidoPaterno: "",
         apellidoMaterno: "",
-        edad: "",
-
+        edad: ""
     });
 
+
     const cardData = [
-        //DE AQUI SE JALARAN LOS DATOS DE NOMBRE Y MOTIVO PARA LAS CARPETAS, ESTO LO HACE DINAMICO
+        //DE AQUI SE JALARAN LOS DATOS DE NOMBRE Y MOTIVO PARA LAS CARPETAS, ESTO LO HACE DINAMICO puto el que lo lea
 
         {
 
@@ -29,25 +28,19 @@ const Cliente = () => {
 
     ];
 
-
     function addClient() {
-        setIsModalOpen(true);
+        // Abre el modal de agregar cliente
+        setIsAddClientModalOpen(true);
     }
 
-    function closeModal() {
-        // Cerrar el modal y restablecer clientInfo
-        setIsModalOpen(false);
-        setClientInfo({
-            name: "",
-            lastName: "",
-            reason: "",
-        });
+    function closeAddClientModal() {
+        // Cierra el modal de agregar cliente
+        setIsAddClientModalOpen(false);
     }
+
 
     function saveClient() {
-        // Realizar acciones con clientInfo
         alert("Cliente agregado");
-        closeModal();
     }
 
     function viewClient() {
@@ -103,6 +96,9 @@ const Cliente = () => {
     }
 
 
+    function agregarCliente() {
+
+    }
 
     return (
         <div className="container-pacientes">
@@ -220,44 +216,35 @@ const Cliente = () => {
                 </button>
             </div>
 
-
-            {isModalOpen && (
-
-                <div className="modal">
-
-                    <div className="modal-content">
-                        <span className="close" onClick={closeModal}>
+            {isAddClientModalOpen && (
+                <div className="modal-container">
+                    <div className="modal-content1">
+                        <span className="modal-close1" onClick={closeAddClientModal}>
                             &times;
                         </span>
                         <h2>Agregar Cliente</h2>
-                        <label>Nombres:</label>
-                        <input
-                            type="text"
-                            value={clientInfo.nombres}
-                            onChange={handleNameChange}
-                        />
+
+                        <label>Nombre:</label>
+                        <input type="text" value={clientInfo.nombres} onChange={handleNameChange} />
+
                         <label>Apellido Paterno:</label>
-                        <input
-                            type="text"
-                            value={clientInfo.apellidoPaterno}
-                            onChange={handleLastNameChange}
-                        />
+                        <input type="text" value={clientInfo.apellidoPaterno} onChange={handleNameChange} />
+
                         <label>Apellido Materno:</label>
-                        <input
-                            type="text"
-                            value={clientInfo.apellidoMaterno}
-                            onChange={handleMaternoChange}
-                        />
+                        <input type="text" value={clientInfo.apellidoMaterno} onChange={handleNameChange} />
+
                         <label>Edad:</label>
-                        <input
-                            type="text"
-                            value={clientInfo.edad}
-                            onChange={handleEdadChange}
-                        />
-                        {/* ... (otros elementos) */}
+                        <input type="text" value={clientInfo.edad} onChange={handleNameChange} />
+
+                        <button type="button" onClick={agregarCliente}>
+                            Aceptar
+                        </button>
                     </div>
                 </div>
             )}
+
+
+
         </div>
     );
 };
