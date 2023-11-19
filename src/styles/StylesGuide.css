@@ -3,7 +3,6 @@
     flex-direction: column;
     width: 100%;
     height: auto;
-    text-align: center;
 }
 
 .guide-section {
@@ -33,5 +32,26 @@
 }
 
 .navigation-buttons button.active {
-    background-color: #000000;
+    background-color: #6fc5ff;
+}
+
+.imageWelcome{
+    width: 100%;
+}
+
+.container-guide0 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+    grid-gap: 20px; /* Espaciado entre las columnas */
+    align-items: center;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr; /* Una columna en dispositivos móviles */
+        text-align: center; /* Centra el texto en dispositivos móviles */
+
+    }
+}
+
+.titleWelcome{
+    margin-bottom: 30px;
 }

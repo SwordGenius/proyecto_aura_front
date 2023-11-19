@@ -35,12 +35,34 @@ const Guide = () => {
 
     return (
         <div className="guide-container">
+
             <div className="guide-section" ref={sectionRefs[0]}>
-                <h1>hola 1</h1>
+                <div className="container-guide0">
+                    <div className="textWelcolme">
+                        <h1 className="titleWelcome">Bienvenido a la Guía de Usuario</h1>
+                        <p>
+                            ¡Hola! Bienvenido a nuestra guía de usuario. Estamos encantados de tenerte aquí.
+                            Esta página está diseñada para proporcionarte información detallada y tutoriales
+                            en video que te ayudarán a aprovechar al máximo nuestro software.
+                        </p>
+                        <p>
+                            Explora las secciones a continuación para encontrar respuestas a tus preguntas y
+                            descubrir consejos útiles. Siempre estamos trabajando para mejorar tu experiencia,
+                            así que revisa regularmente para obtener actualizaciones y nuevos tutoriales.
+                        </p>
+                    </div>
+
+                    <div className="imgWelcome">
+                        <img className="imageWelcome" src={"/assets/img-login.jpg"} alt="img-login-central.jpg" />
+
+                    </div>
+                </div>
             </div>
+
             <div className="guide-section" ref={sectionRefs[1]}>
                 <h1>hola 2</h1>
             </div>
+
             <div className="guide-section" ref={sectionRefs[2]}>
                 <h1>hola 3</h1>
             </div>
