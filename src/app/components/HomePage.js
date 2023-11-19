@@ -7,6 +7,7 @@ import Citas from "./Citas";
 import AddQuery from "./AddQuery";
 import Calendario from "./Calendario";
 import Configuraciones from "./Configuraciones";
+import Guide from "./Guide";
 
 
 const Content = () => {
@@ -42,7 +43,9 @@ const Content = () => {
                 setContent(<Configuraciones />);
                 break;
 
-            case "verInformacionCliente":
+            case "guiaUsuario":
+                setContent(<Guide />);
+
                 break;
 
             default:
@@ -53,6 +56,11 @@ const Content = () => {
 
     function settingAction() {
         alert("configuracion");
+    }
+
+    function redireccionGuia() {
+        navigate.push("/guideLink")
+
     }
 
     return (
@@ -92,6 +100,13 @@ const Content = () => {
                             <input type="radio" name="radio" />
                             <span onClick={() => { handleContentChange("configuracion"); }}>
                                 Configuracion
+                            </span>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="radio" />
+                            <span  onClick={() => { handleContentChange("guiaUsuario"); }}>
+                                Guia de Usuario
                             </span>
                         </label>
                     </form>

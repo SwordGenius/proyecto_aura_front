@@ -2,41 +2,9 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: auto;
-}
-
-.guide-section {
-    height: 100vh;
-    scroll-snap-type: y mandatory;
-    overflow-y: hidden;
-}
-
-.navigation-buttons {
-    position: fixed;
-    top: 50%;
-    right: 2%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    transform: translateY(-50%);
-}
-
-.navigation-buttons button {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin: 0 0 28px 0;
-    background-color: #ccc;
-    border: none;
-    cursor: pointer;
-}
-
-.navigation-buttons button.active {
-    background-color: #6fc5ff;
-}
-
-.imageWelcome {
-    width: 100%;
+    max-width: 100%;
+    height: 90vh;
+    overflow-y: auto;
 }
 
 .container-guide0 {
@@ -44,6 +12,7 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
     align-items: center;
+    max-width: 100%;
 
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
@@ -63,7 +32,7 @@
 
 .container-guide1 {
     text-align: center;
-
+    max-width: 100%;
 }
 
 .titleWelcome2 {
@@ -72,25 +41,23 @@
     color: #00affa;
 }
 
-
-/*styles de las card*/
-
 .cardsVideos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
     margin-top: 20px;
+    max-width: 100%;
 
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
         text-align: center;
-
     }
 }
 
 .cardvideo {
     padding: 20px;
-    width: 330px;
+    width: 100%;
+    max-width: 330px;
     min-height: 370px;
     border-radius: 20px;
     background: #00affa;
@@ -113,7 +80,6 @@
     background-color: #ffffff;
     border-radius: 15px;
     background: #ffffff;
-
 }
 
 .card-body {
@@ -132,3 +98,5 @@
 .by-name {
     font-weight: 700;
 }
+
+

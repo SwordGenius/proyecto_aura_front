@@ -1,42 +1,13 @@
-"use client";
-import "../../styles/StylesGuide.css";
-// Añade estos import al inicio de tu archivo
+"use client"
 import React, { useRef, useState, useEffect } from "react";
+import "../../styles/StylesGuide.css";
 
 const Guide = () => {
-    const sectionRefs = [useRef(), useRef(), useRef()];
-    const [currentSection, setCurrentSection] = useState(0);
 
-    // Detecta la sección actual al hacer scroll
-    const handleScroll = () => {
-        const scrollPosition = window.scrollY + window.innerHeight / 2;
-        const newCurrentSection = sectionRefs.findIndex(
-            (ref) => ref.current.offsetTop <= scrollPosition && ref.current.offsetTop + ref.current.offsetHeight > scrollPosition
-        );
-
-        if (newCurrentSection !== -1 && newCurrentSection !== currentSection) {
-            setCurrentSection(newCurrentSection);
-        }
-    };
-
-    useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [handleScroll]);
-
-    const scrollToSection = (index) => {
-        sectionRefs[index].current.scrollIntoView({
-            behavior: "smooth",
-        });
-        setCurrentSection(index);
-    };
 
     return (
         <div className="guide-container">
 
-            <div className="guide-section" ref={sectionRefs[0]}>
                 <div className="container-guide0">
                     <div className="textWelcolme">
                         <h1 className="titleWelcome">Bienvenido a la Guía de Usuario</h1>
@@ -54,14 +25,10 @@ const Guide = () => {
 
                     <div className="imgWelcome">
                         <img className="imageWelcome" src={"/assets/4155601.jpg"} alt="img de ayuda" />
-
                     </div>
                 </div>
-            </div>
 
-            <div className="guide-section" ref={sectionRefs[1]}>
                 <div className="container-guide1">
-
                     <div className="textWelcolme2">
                         <h2 className="titleWelcome2">Explora nuestros Videos</h2>
                         <p>
@@ -77,54 +44,88 @@ const Guide = () => {
                         <div className="cardsVideos">
 
                             <div className="cardvideo">
-                                <div className="card-image"></div>
-                                <p className="card-title">Card title</p>
+                                <video className="card-image" controls>
+                                    <source src="/assets/videos/prueba.mp4" type="video/mp4" />
+                                    !UPS¡ al parecer tu navegador no soporta el  video.
+                                </video>
+                                <p className="card-title">titulo del tutorial</p>
                                 <p className="card-body">
-                                    Nullam ac tristique nulla, at convallis quam. Integer consectetur mi nec magna tristique, non lobortis.
+                                    Descripcion del tutorial
                                 </p>
-                                <p class="footer">Written by <span class="by-name">John Doe</span> on <span class="date">25/05/23</span></p>
+                                <p className="footer">Version de Aura <span className="by-name">1.0</span> de <span className="date">18/11/23</span></p>
                             </div>
 
                             <div className="cardvideo">
-                                <div className="card-image"></div>
-                                <p className="card-title">Card title</p>
+                                <video className="card-image" controls>
+                                    <source src="/assets/videos/prueba.mp4" type="video/mp4" />
+                                    !UPS¡ al parecer tu navegador no soporta el  video.
+                                </video>
+                                <p className="card-title">titulo del tutorial</p>
                                 <p className="card-body">
-                                    Nullam ac tristique nulla, at convallis quam. Integer consectetur mi nec magna tristique, non lobortis.
+                                    Descripcion del tutorial
                                 </p>
-                                <p className="footer">Written by <span className="by-name">John Doe</span> on <span className="date">25/05/23</span></p>
+                                <p className="footer">Version de Aura <span className="by-name">1.0</span> de <span className="date">18/11/23</span></p>
                             </div>
 
                             <div className="cardvideo">
-                                <div className="card-image"></div>
-                                <p className="card-title">Card title</p>
+                                <video className="card-image" controls>
+                                    <source src="/assets/videos/prueba.mp4" type="video/mp4" />
+                                    !UPS¡ al parecer tu navegador no soporta el  video.
+                                </video>
+                                <p className="card-title">titulo del tutorial</p>
                                 <p className="card-body">
-                                    Nullam ac tristique nulla, at convallis quam. Integer consectetur mi nec magna tristique, non lobortis.
+                                    Descripcion del tutorial
                                 </p>
-                                <p className="footer">Written by <span className="by-name">John Doe</span> on <span className="date">25/05/23</span></p>
+                                <p className="footer">Version de Aura <span className="by-name">1.0</span> de <span className="date">18/11/23</span></p>
+                            </div>
+
+                            <div className="cardvideo">
+                                <video className="card-image" controls>
+                                    <source src="/assets/videos/prueba.mp4" type="video/mp4" />
+                                    !UPS¡ al parecer tu navegador no soporta el  video.
+                                </video>
+                                <p className="card-title">titulo del tutorial</p>
+                                <p className="card-body">
+                                    Descripcion del tutorial
+                                </p>
+                                <p className="footer">Version de Aura <span className="by-name">1.0</span> de <span className="date">18/11/23</span></p>
                             </div>
 
 
+                            <div className="cardvideo">
+                                <video className="card-image" controls>
+                                    <source src="/assets/videos/prueba.mp4" type="video/mp4" />
+                                    !UPS¡ al parecer tu navegador no soporta el  video.
+                                </video>
+                                <p className="card-title">titulo del tutorial</p>
+                                <p className="card-body">
+                                    Descripcion del tutorial
+                                </p>
+                                <p className="footer">Version de Aura <span className="by-name">1.0</span> de <span className="date">18/11/23</span></p>
+                            </div>
+
+                            <div className="cardvideo">
+                                <video className="card-image" controls>
+                                    <source src="/assets/videos/prueba.mp4" type="video/mp4" />
+                                    !UPS¡ al parecer tu navegador no soporta el  video.
+                                </video>
+                                <p className="card-title">titulo del tutorial</p>
+                                <p className="card-body">
+                                    Descripcion del tutorial
+                                </p>
+                                <p className="footer">Version de Aura <span className="by-name">1.0</span> de <span className="date">18/11/23</span></p>
+                            </div>
 
                         </div>
                     </div>
-
-
                 </div>
+
+
+
+
             </div>
 
-            <div className="guide-section" ref={sectionRefs[2]}>
-                <h1>hola 3</h1>
-            </div>
-            <div className="navigation-buttons">
-                {sectionRefs.map((ref, index) => (
-                    <button
-                        key={index}
-                        className={currentSection === index ? "active" : ""}
-                        onClick={() => scrollToSection(index)}
-                    />
-                ))}
-            </div>
-        </div>
+
     );
 };
 
