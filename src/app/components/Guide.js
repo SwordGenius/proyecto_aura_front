@@ -61,16 +61,54 @@ const Guide = () => {
 
             <div className="guide-section" ref={sectionRefs[1]}>
                 <div className="container-guide1">
-                    <h2 className="titleWelcome2">Explora nuestros Videos</h2>
-                    <p>
-                        Aquí encontrarás una colección de videos que hemos preparado para guiarte en el uso de nuestro software.
-                        Desde funciones básicas hasta consejos avanzados, estos videos te serán útiles para aprovechar al máximo todas
-                        las características que ofrecemos.
-                    </p>
-                    <p>
-                        ¡No dudes en explorar y aprender! Si tienes alguna pregunta específica, también puedes consultar nuestra sección
-                        de preguntas frecuentes o contactarnos directamente.
-                    </p>
+
+                    <div className="textWelcolme2">
+                        <h2 className="titleWelcome2">Explora nuestros Videos</h2>
+                        <p>
+                            Aquí encontrarás una colección de videos que hemos preparado para guiarte en el uso de nuestro software.
+                            Desde funciones básicas hasta consejos avanzados, estos videos te serán útiles para aprovechar al máximo todas
+                            las características que ofrecemos.
+                        </p>
+                        <p>
+                            ¡No dudes en explorar y aprender! Si tienes alguna pregunta específica, también puedes consultar nuestra sección
+                            de preguntas frecuentes o contactarnos directamente.
+                        </p>
+
+                        <div className="cardsVideos">
+
+                            <div className="cardvideo">
+                                <div className="card-image"></div>
+                                <p className="card-title">Card title</p>
+                                <p className="card-body">
+                                    Nullam ac tristique nulla, at convallis quam. Integer consectetur mi nec magna tristique, non lobortis.
+                                </p>
+                                <p class="footer">Written by <span class="by-name">John Doe</span> on <span class="date">25/05/23</span></p>
+                            </div>
+
+                            <div className="cardvideo">
+                                <div className="card-image"></div>
+                                <p className="card-title">Card title</p>
+                                <p className="card-body">
+                                    Nullam ac tristique nulla, at convallis quam. Integer consectetur mi nec magna tristique, non lobortis.
+                                </p>
+                                <p className="footer">Written by <span className="by-name">John Doe</span> on <span className="date">25/05/23</span></p>
+                            </div>
+
+                            <div className="cardvideo">
+                                <div className="card-image"></div>
+                                <p className="card-title">Card title</p>
+                                <p className="card-body">
+                                    Nullam ac tristique nulla, at convallis quam. Integer consectetur mi nec magna tristique, non lobortis.
+                                </p>
+                                <p className="footer">Written by <span className="by-name">John Doe</span> on <span className="date">25/05/23</span></p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
 
