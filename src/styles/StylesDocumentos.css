@@ -1,4 +1,5 @@
-.documentos-container{
+
+.documentos-container {
     width: 100%;
     height: auto;
 }
@@ -13,23 +14,6 @@
     font-size: 30px;
 }
 
-
-/*para pantallas pequeñas*/
-@media (max-width: 768px) {
-
-    .tituloDocumentos {
-        font-family: "Roboto", sans-serif;
-        font-weight: bold;
-        font-size: 24px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        text-align: center;
-        
-
-    }
-
-}
-
 .container-home {
     display: flex;
     justify-content: center;
@@ -39,57 +23,34 @@
     height: auto;
 }
 
-/*boton regresar*/
-.custom-button {
-    margin-top: 20px;
-    margin-right: 20px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1;
-    background-color: #568AC7;   
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-}
-
 .section-right {
-    width: calc(100% - 300px); /* Restar el ancho de la sección izquierda */
+    width: calc(100% - 300px);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px;
 }
 
-.column-center{
+.column-center {
     margin: 26px;
-    display: flex;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-
-
-.pdf-section{
+.pdf-section {
     margin-top: 64px;
-    width: 1100px;
-}
-
-.pdf-item:hover {
-    scale: 1.05;
-    transition-duration: 700ms;
-
+    max-width: 1100px;
+    width: 100%;
 }
 
 .pdf-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas, cada una con el mismo ancho */
-    gap: 16px; /* Espacio entre las columnas */
-}  
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
 .pdf-item {
     padding: 16px;
     border: 0.1px solid #fff;
@@ -98,5 +59,35 @@
     align-items: center;
     box-shadow: 5px 5px 10px #b8b7b7;
     border-radius: 25px;
+}
 
+
+@media (max-width: 768px) {
+    .tituloDocumentos {
+        font-family: "Roboto", sans-serif;
+        font-weight: bold;
+        font-size: 24px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .pdf-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 16px;
+    }
+
+    .custom-button {
+        margin-top: 20px;
+        margin-right: 20px;
+        position: static; 
+        z-index: 1;
+        background-color: #568AC7;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+    }
 }
