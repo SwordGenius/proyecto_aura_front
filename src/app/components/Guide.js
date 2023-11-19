@@ -41,7 +41,7 @@ const Guide = () => {
                     <div className="textWelcolme">
                         <h1 className="titleWelcome">Bienvenido a la Guía de Usuario</h1>
                         <p>
-                            ¡Hola! Bienvenido a nuestra guía de usuario. Estamos encantados de tenerte aquí.
+                            <span className="spanHola">¡Hola!</span> Bienvenido a nuestra guía de usuario. Estamos encantados de tenerte aquí.
                             Esta página está diseñada para proporcionarte información detallada y tutoriales
                             en video que te ayudarán a aprovechar al máximo nuestro software.
                         </p>
@@ -53,14 +53,25 @@ const Guide = () => {
                     </div>
 
                     <div className="imgWelcome">
-                        <img className="imageWelcome" src={"/assets/img-login.jpg"} alt="img-login-central.jpg" />
+                        <img className="imageWelcome" src={"/assets/4155601.jpg"} alt="img de ayuda" />
 
                     </div>
                 </div>
             </div>
 
             <div className="guide-section" ref={sectionRefs[1]}>
-                <h1>hola 2</h1>
+                <div className="container-guide1">
+                    <h2 className="titleWelcome2">Explora nuestros Videos</h2>
+                    <p>
+                        Aquí encontrarás una colección de videos que hemos preparado para guiarte en el uso de nuestro software.
+                        Desde funciones básicas hasta consejos avanzados, estos videos te serán útiles para aprovechar al máximo todas
+                        las características que ofrecemos.
+                    </p>
+                    <p>
+                        ¡No dudes en explorar y aprender! Si tienes alguna pregunta específica, también puedes consultar nuestra sección
+                        de preguntas frecuentes o contactarnos directamente.
+                    </p>
+                </div>
             </div>
 
             <div className="guide-section" ref={sectionRefs[2]}>
