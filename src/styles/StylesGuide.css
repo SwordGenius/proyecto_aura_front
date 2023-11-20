@@ -89,9 +89,11 @@
 }
 
 .card-body {
+
     margin: 13px 0 0 10px;
     color: rgb(255, 255, 255);
     font-size: 15px;
+
 }
 
 /* Pie de página */
@@ -105,6 +107,7 @@
 
 .by-name {
     font-weight: 700;
+
 }
 
 /* Botón de descripción */

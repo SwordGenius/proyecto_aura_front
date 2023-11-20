@@ -9,6 +9,7 @@ import Calendario from "./Calendario";
 import Configuraciones from "./Configuraciones";
 import Guide from "./Guide";
 import Swal from 'sweetalert2';
+import Image from 'next/image'
 
 
 
@@ -61,8 +62,6 @@ const Content = () => {
     }
 
     function redireccionGuia() {
-        navigate.push("/guideLink")
-
     }
 
     function cerrarSesion() {
@@ -77,6 +76,7 @@ const Content = () => {
                 Swal.fire('Adios :)', '', 'success');
 
                 setTimeout(() => {
+
                     navigate.push('/contentLink');
                 }, 2000);
             }
@@ -85,7 +85,13 @@ const Content = () => {
     return (
         <div className="container-home">
             <section className="section-left">
-                <img className="imgLogo" src={"/assets/Aura-logo2.png"} alt="AURA-logo.png" />
+                <Image
+                    className="imgLogo"
+                    src="/assets/Aura-logo2.png"
+                    alt="AURA-logo.png"
+                    width={800}
+                    height={500}
+                />
                 <div className="container">
                     <form className="botonesPrincipales">
                         <label>

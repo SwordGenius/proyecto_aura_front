@@ -1,6 +1,7 @@
 "use client"
 import "../../styles/StylesGuide.css";
 import "../../styles/StylesLoad.css";
+import Image from 'next/image'
 
 import { saveAs } from 'file-saver';
 
@@ -42,7 +43,13 @@ const Guide = () => {
                     </div>
 
                     <div className="imgWelcome">
-                        <img className="imageWelcome" src={"/assets/4155601.jpg"} alt="img de ayuda" />
+                        <Image
+                            className="imageWelcome"
+                            src="/assets/4155601.jpg"
+                            alt="img de ayuda"
+                            width={500}
+                            height={300}
+                        />
                     </div>
                 </div>
 
@@ -61,17 +68,6 @@ const Guide = () => {
 
                         <div className="cardsVideos">
 
-                            <div className="cardvideo">
-                                <video className="card-image" controls>
-                                    <source src="/assets/videos/prueba.mp4" type="video/mp4" />
-                                    !UPS¡ al parecer tu navegador no soporta el  video.
-                                </video>
-                                <p className="card-title">titulo del tutorial</p>
-                                <p className="card-body">
-                                    Descripcion del tutorial
-                                </p>
-                                <p className="footer">Version de Aura <span className="by-name">1.0</span> de <span className="date">18/11/23</span></p>
-                            </div>
 
                             <div className="cardvideo">
                                 <video className="card-image" controls>
@@ -110,29 +106,7 @@ const Guide = () => {
                             </div>
 
 
-                            <div className="cardvideo">
-                                <video className="card-image" controls>
-                                    <source src="/assets/videos/prueba.mp4" type="video/mp4" />
-                                    !UPS¡ al parecer tu navegador no soporta el  video.
-                                </video>
-                                <p className="card-title">titulo del tutorial</p>
-                                <p className="card-body">
-                                    Descripcion del tutorial
-                                </p>
-                                <p className="footer">Version de Aura <span className="by-name">1.0</span> de <span className="date">18/11/23</span></p>
-                            </div>
 
-                            <div className="cardvideo">
-                                <video className="card-image" controls>
-                                    <source src="/assets/videos/prueba.mp4" type="video/mp4" />
-                                    !UPS¡ al parecer tu navegador no soporta el  video.
-                                </video>
-                                <p className="card-title">titulo del tutorial</p>
-                                <p className="card-body">
-                                    Descripcion del tutorial
-                                </p>
-                                <p className="footer">Version de Aura <span className="by-name">1.0</span> de <span className="date">18/11/23</span></p>
-                            </div>
 
                         </div>
                     </div>
@@ -142,13 +116,25 @@ const Guide = () => {
             <div className="container-guide0">
 
                 <div className="imgWelcome">
-                    <img className="imageWelcome" src={"/assets/4.jpg"} alt="img de ayuda" />
+                    <Image
+                        className="imageWelcome"
+                        src="/assets/4.jpg"
+                        alt="img de ayuda"
+                        width={500}
+                        height={300}
+                    />
                 </div>
 
                 <div className="textWelcolme">
-                    <p>
-                        "Si no has encontrado la información que necesitas, te invitamos a descargar nuestro  manual de usuario. En él, encontrarás detalles detallados y respuestas a las preguntas más frecuentes. ¡Esperamos que te sea de ayuda
-                    </p>
+                    <div>
+                        <p>
+                            Si no has encontrado la información que necesitas, te invitamos a descargar nuestro manual de usuario. En él, encontrarás detalles detallados y respuestas a las preguntas más frecuentes. ¡Esperamos que te sea de ayuda
+
+                        </p>
+                    </div>
+
+
+
 
                     <button onClick={downloadGuide} className="buttondes" type="button">
                         <span class="button__text">Descargar</span>

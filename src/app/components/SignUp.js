@@ -1,6 +1,7 @@
 "use client";
 import React, {useState} from 'react';
 import "../../styles/StylesLoginAndSignUp.css"
+import Image from 'next/image'
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -19,7 +20,13 @@ function Login() {
             <form className="form">
 
                 <div className="contenedor-img">
-                    <img className="imgLogin" src={"/assets/img-signUp.jpg"} alt="img-login-central.jpg" />
+                    <Image
+                        className="imgLogin"
+                        src="/assets/img-signUp.jpg"
+                        alt="img-login-central.jpg"
+                        width={800}
+                        height={500}
+                    />
                 </div>
 
                 <div className="flex-column">

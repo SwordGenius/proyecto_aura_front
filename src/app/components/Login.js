@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 import "../../styles/StylesLoginAndSignUp.css"
 import signUp from "@/app/components/SignUp";
 import {useRouter} from "next/navigation";
+import Image from 'next/image'
+
 
 function Login() {
     const navigate=useRouter()
@@ -26,7 +28,13 @@ function Login() {
             <form className="form">
 
                 <div className="contenedor-img">
-                    <img className="imgLogin" src={"/assets/img-login.jpg"} alt="img-login-central.jpg" />
+                    <Image
+                        className="imgLogin"
+                        src="/assets/img-login.jpg"
+                        alt="img-login-central.jpg"
+                        width={500}
+                        height={300}
+                    />
                 </div>
 
 
