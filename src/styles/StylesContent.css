@@ -1,3 +1,9 @@
+.initial-content {
+    max-width: 100%;
+    max-height: 70vh;
+    display: flex;
+    flex-direction: row;
+}
 
 .imgLogo {
     width: 60%;
@@ -6,15 +12,10 @@
 
 .imgMujer {
     width: 100%;
-    height: auto;
+    height: 80vh;
 }
 
-.initial-content {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-}
+
 
 .information-container {
     flex: 1;
@@ -59,6 +60,7 @@
     transform: scale(0.98);
 }
 
+
 /* Modificaciones para dispositivos móviles */
 
 @media (max-width: 768px) {
@@ -72,5 +74,10 @@
 
     .container-photo button {
         margin: 10px;
+    }
+
+    .imgMujer {
+        width: 100%;
+        height: auto;
     }
 }

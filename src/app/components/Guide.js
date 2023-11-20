@@ -1,6 +1,7 @@
 "use client"
-import React, { useRef, useState, useEffect } from "react";
 import "../../styles/StylesGuide.css";
+import "../../styles/StylesLoad.css";
+
 import { saveAs } from 'file-saver';
 
 const Guide = () => {
@@ -15,7 +16,6 @@ const Guide = () => {
 
             saveAs(blob, "Guia de usuario Aura.pdf");
 
-            // Muestra un mensaje después de la descarga
             alert("Descarga completada");
         } catch (error) {
             console.error("Error al descargar el PDF:", error);
@@ -172,3 +172,13 @@ const Guide = () => {
 };
 
 export default Guide;
+
+
+
+
+
+
+
+
+
+
