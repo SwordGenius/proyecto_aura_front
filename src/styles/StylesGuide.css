@@ -13,12 +13,15 @@
     grid-gap: 20px;
     align-items: center;
     max-width: 100%;
+}
 
-    @media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+    .container-guide0 {
         grid-template-columns: 1fr;
         text-align: center;
     }
 }
+
 
 .titleWelcome {
     margin-bottom: 30px;
@@ -36,23 +39,28 @@
 }
 
 .titleWelcome2 {
+    text-align: center;
     margin-bottom: 30px;
     font-size: 30px;
     color: #00affa;
 }
 
 .cardsVideos {
+    align-items: center;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
     margin-top: 20px;
     max-width: 100%;
+}
 
-    @media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+    .cardsVideos {
         grid-template-columns: 1fr;
         text-align: center;
     }
 }
+
 
 .cardvideo {
     padding: 20px;

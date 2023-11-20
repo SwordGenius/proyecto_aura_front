@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2"; // Importa SweetAlert2
 import "../../styles/StylesAddQuery.css";
 
-// Componente principal
 const AddQuerry = () => {
     const navigate = useRouter();
     const [clientes, setClientes] = useState(["Cliente 1", "Cliente 2", "Cliente 3"]);
