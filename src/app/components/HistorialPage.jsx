@@ -1,10 +1,8 @@
 "use client"
 import React, { useState, useEffect} from "react";
-import { useRouter } from "next/navigation";
 import "../../styles/StylesHistorial.css"
-import Sidebar from "./Sidebar"
+import Link from "next/link";
 const Historial = () => {
-    const navigate = useRouter();
 
     const [isLoading, setisLoading] = useState(true);
     const [isInformation, setisInformation] = useState(false);
@@ -19,9 +17,6 @@ const Historial = () => {
         }
     })
 
-    function funtionAtras() {
-        navigate.push('/contenidoClienteLink');
-    }
 
     const dataExample = [
         {
@@ -65,19 +60,17 @@ const Historial = () => {
         return (
             <>
             <div className="container-home">
-                <button onClick={funtionAtras} className="custom-button">Regresar</button>
-                <section className="section-right">
+            <Link  href="/contenidoClienteLink" className="custom-button">Regresar</Link>
                     <div className="column-center">
                         <div>
                             <h3>Historial</h3>
                         </div>
                         <div className="historial-section">
-                           <div className="loading">
-                            <p>Cargando </p>
-                           </div>
+                        <div className="loadingnoInfo">
+                            <p>Cargando</p>
+                        </div>
                         </div>
                     </div>
-                </section>
             </div>
         </>
         )
@@ -88,8 +81,7 @@ const Historial = () => {
         return (
             <>
             <div className="container-home">
-                <button onClick={funtionAtras} className="custom-button">Regresar</button>
-                <section className="section-right">
+            <Link  href="/contenidoClienteLink" className="custom-button">Regresar</Link>
                     <div className="column-center">
                         <div>
                             <h3>Historial</h3>
@@ -100,7 +92,6 @@ const Historial = () => {
                         </div>
                         </div>
                     </div>
-                </section>
             </div>
         </>
         )
@@ -109,8 +100,7 @@ const Historial = () => {
     return (
         <>
             <div className="container-home">
-                <button onClick={funtionAtras} className="custom-button">Regresar</button>
-                <section className="section-right">
+            <Link  href="/contenidoClienteLink" className="custom-button">Regresar</Link>
                     <div className="column-center">
                         <div>
                             <h3>Historial</h3>
@@ -128,7 +118,6 @@ const Historial = () => {
                             </div>
                         </div>
                     </div>
-                </section>
             </div>
         </>
     );

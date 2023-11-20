@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import "../../styles/StylesContenidoCliente.css";
 
 import Swal from 'sweetalert2';
+import Link from "next/link";
 
 const ContenidoCliente = () => {
     const navigate = useRouter();
@@ -21,7 +22,7 @@ const ContenidoCliente = () => {
     }
 
     function funtionHistorial() {
-       navigate.push('/historial')
+        navigate.push('/historial')
     }
 
     function saveNote() {
@@ -29,7 +30,8 @@ const ContenidoCliente = () => {
             'Exito',
             'Su nota se a guardado',
             'success'
-        )    }
+        )
+    }
 
     function funtionAtras() {
         navigate.push('/homePageLink');
@@ -61,8 +63,7 @@ const ContenidoCliente = () => {
 
     return (
         <div className="container-cliente">
-
-            <button onClick={funtionAtras} className="custom-button">Regresar</button>
+            <Link href="/homePageLink" className="custom-button">Regresar</Link>
             <div className="card-information">
                 <div className="cardCliente">
                     <div className="card__img">
@@ -110,7 +111,7 @@ const ContenidoCliente = () => {
                             <p className="text-title">Documentos</p>
                             <p className="text-body">Aqui puedes ver todos los documentos de tu cliente</p>
                         </div>
-                        <button onClick={funtionDocument} class="card-button">Ver</button>
+                        <button onClick={funtionDocument} className="card-button">Ver</button>
                     </div>
 
                     <div className="cardDocumentos">

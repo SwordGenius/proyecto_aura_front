@@ -22,51 +22,62 @@ const Citas = () => {
     }
 
     const cardData = [{
+        id: 1,
+        name: nombrePaciente,
+        motivo: motivo,
+        fecha: fecha,
+        edad: edad
+        
+    },{
+        id: 2,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id: 3,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id: 4,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id:5,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id: 6,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id: 7,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id: 8,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id: 9,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
-        name: nombrePaciente,
-        motivo: motivo,
-        fecha: fecha,
-        edad: edad
-    },{
+        id: 10,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
@@ -87,8 +98,8 @@ const Citas = () => {
 
                 {cardData
                     .slice(currentCardIndex, currentCardIndex + cardsPerPage)
-                    .map((data, index) => (
-                        <div className="notification" key={index}>
+                    .map((data) => (    
+                        <div className="notification" key={data.id}>
                             <div className="notiglow"></div>
                             <div className="notiborderglow"></div>
                             <div className="notititle">Motivo: {data.motivo}</div>

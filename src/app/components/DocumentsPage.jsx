@@ -1,14 +1,22 @@
 "use client"
-import React from "react";
-import { useRouter } from "next/navigation";
+import React, {useState, useEffect} from "react";
 import "../../styles/StylesDocumentos.css"
-import Sidebar from "./Sidebar"
 import Image from "next/image";
+import Link from "next/link";
 const Documentos = () => {
-    const navigate = useRouter();
-    function funtionAtras() {
-        navigate.push('/contenidoClienteLink');
-    }
+
+    const [isLoading, setisLoading] = useState(true);
+    const [isInformation, setisInformation] = useState(false);
+    const [response, setResponse] = useState(false);
+
+    useEffect(() =>{
+        setTimeout(() =>{
+            setisLoading(false)
+        },1000);
+        if(response){
+            setisInformation(true)
+        }
+    })
 
     const dataExample = [
         {
@@ -51,32 +59,74 @@ const Documentos = () => {
             info: 'Juan',
             img: 25,
         },
-        
-        
+
+
     ]
 
-    return (
-        <>
+    if(isLoading){
+        return (
+            <>
             <div className="container-home">
-                    <button onClick={funtionAtras} className="custom-button">Regresar</button>
+            <Link  href="/contenidoClienteLink" className="custom-button">Regresar</Link>
                     <div className="column-center">
                         <div>
                             <h3>Documentos</h3>
                         </div>
                         <div className="pdf-section">
-                            <div className="pdf-grid">
-                                {dataExample.map((pdf) => (
-                                    <div key={pdf.id} className="pdf-item">
-                                        <Image 
-                                        width={70}
-                                        height={70}
-                                        src="/pdf.png" alt="pdfimg" />
-                                        <p>{pdf.info}</p>
-                                    </div>
-                                ))}
-                            </div>
+                        <div className="loadingnoInfo">
+                            <p>Cargando</p>
+                        </div>
                         </div>
                     </div>
+            </div>
+        </>
+        )
+    }
+
+
+    if(isInformation){
+        return (
+            <>
+            <div className="container-home">
+            <Link  href="/contenidoClienteLink" className="custom-button">Regresar</Link>
+                    <div className="column-center">
+                        <div>
+                            <h3>Documentos</h3>
+                        </div>
+                        <div className="pdf-section">
+                        <div className="loadingnoInfo">
+                            <p>No hay documentos disponible</p>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        </>
+        )
+    }
+
+    return (
+        <>
+            <div className="container-home">
+                <Link  href="/contenidoClienteLink" className="custom-button">Regresar</Link>
+                <div className="column-center">
+                    <div>
+                        <h3>Documentos</h3>
+                    </div>
+                    <div className="pdf-section">
+                        <div className="pdf-grid">
+                            {dataExample.map((pdf) => (
+                                <div key={pdf.id} className="pdf-item">
+                                    <Image
+                                        width= {70}
+                                        height= {70}
+                                        priority={false}
+                                        src="/pdf.png" alt="pdfimg" />
+                                    <p>{pdf.info}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     );
