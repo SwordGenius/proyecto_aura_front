@@ -63,6 +63,10 @@ const Content = () => {
 
     }
 
+    function cerrarSesion() {
+        alert("cerrar sesion");
+    }
+
     return (
         <div className="container-home">
             <section className="section-left">
@@ -96,17 +100,26 @@ const Content = () => {
                             </span>
                         </label>
 
+
+
                         <label>
+                            <input type="radio" name="radio" />
+                            <span  onClick={() => { handleContentChange("guiaUsuario"); }}>
+                                Guia de Usuario
+                            </span>
+                        </label>
+
+                        <label className="inferior">
                             <input type="radio" name="radio" />
                             <span onClick={() => { handleContentChange("configuracion"); }}>
                                 Configuracion
                             </span>
                         </label>
 
-                        <label>
+                        <label className="inferior">
                             <input type="radio" name="radio" />
-                            <span  onClick={() => { handleContentChange("guiaUsuario"); }}>
-                                Guia de Usuario
+                            <span onClick={cerrarSesion}>
+                                Cerrar Sesion
                             </span>
                         </label>
                     </form>

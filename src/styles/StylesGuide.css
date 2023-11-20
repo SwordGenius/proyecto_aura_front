@@ -108,3 +108,64 @@
 }
 
 
+/*btn des*/
+
+.buttondes {
+    margin-top: 20px;
+    position: relative;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid #00affa;
+    background-color: #00affa;
+    overflow: hidden;
+}
+
+.buttondes, .button__icon, .button__text {
+    transition: all 0.3s;
+}
+
+.buttondes .button__text {
+    transform: translateX(22px);
+    color: #fff;
+    font-weight: 600;
+}
+
+.buttondes .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: #00affa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttondes .svg {
+    width: 20px;
+    fill: #fff;
+}
+
+.buttondes:hover {
+    background: #00affa;
+}
+
+.buttondes:hover .button__text {
+    color: transparent;
+}
+
+.buttondes:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+}
+
+.buttondes:active .button__icon {
+    background-color: #00affa;
+}
+
+.buttondes:active {
+    border: 1px solid #00affa;
+}
