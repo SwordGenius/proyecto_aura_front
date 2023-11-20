@@ -1,17 +1,16 @@
-.imgLogo{
+
+.imgLogo {
     width: 60%;
     height: auto;
 }
 
-.imgMujer{
+.imgMujer {
     width: 100%;
     height: auto;
 }
 
-
-
 .initial-content {
-    width:100%;
+    width: 100%;
     height: auto;
     display: flex;
     flex-direction: row;
@@ -29,21 +28,11 @@
     flex: 1;
     flex-direction: column;
     text-align: right;
-}  .container-photo button {
+}
+
+.container-photo button {
     margin-right: 20px;
 }
-
-@media (max-width: 768px) {
-    .initial-content {
-        flex-direction: column;
-    }
-
-    .container-photo{
-        text-align: center;
-    }
-
-}
-
 
 .stylesBtn {
     padding: 12.5px 30px;
@@ -51,7 +40,7 @@
     border-radius: 100px;
     background-color: #2ba8fb;
     color: #ffffff;
-    font-weight: Bold;
+    font-weight: bold;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
 }
@@ -70,3 +59,18 @@
     transform: scale(0.98);
 }
 
+/* Modificaciones para dispositivos móviles */
+
+@media (max-width: 768px) {
+    .initial-content {
+        flex-direction: column;
+    }
+
+    .container-photo {
+        text-align: center;
+    }
+
+    .container-photo button {
+        margin: 10px;
+    }
+}
