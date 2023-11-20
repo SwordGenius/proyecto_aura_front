@@ -1,7 +1,7 @@
-"use client"
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import "../../styles/StylesCitas.css"
+
 const Citas = () => {
     const navigate = useRouter();
     const [notaDelUsuario, setNotaDelUsuario] = useState('');
@@ -76,25 +76,25 @@ const Citas = () => {
 
 
     return (
-        <div className="citas-container">
+        <div className="citas-contenedor">
 
-            <div className="user">
+            <div className="seccion-usuario">
                 <h2>Citas disponibles </h2>
                 <h2>Hola, {miNombre}</h2>
             </div>
 
-            <div className="card-container">
+            <div className="contenedor-tarjetas">
 
                 {cardData
                     .slice(currentCardIndex, currentCardIndex + cardsPerPage)
                     .map((data, index) => (
-                        <div className="notification" key={index}>
-                            <div className="notiglow"></div>
-                            <div className="notiborderglow"></div>
-                            <div className="notititle">Motivo: {data.motivo}</div>
-                            <div className="notibody">Fecha: {data.fecha}</div>
-                            <div className="notititle">Nombre: {data.name}</div>
-                            <div className="notibody">Edad: {data.edad}</div>
+                        <div className="tarjeta-notificacion" key={index}>
+                            <div className="brillo-tarjeta"></div>
+                            <div className="bordo-brillo-tarjeta"></div>
+                            <div className="titulo-notificacion">Motivo: {data.motivo}</div>
+                            <div className="cuerpo-notificacion">Fecha: {data.fecha}</div>
+                            <div className="titulo-notificacion">Nombre: {data.name}</div>
+                            <div className="cuerpo-notificacion">Edad: {data.edad}</div>
                         </div>
                     ))}
 
@@ -115,6 +115,3 @@ const Citas = () => {
     );
 };
 export default Citas;
-
-
-

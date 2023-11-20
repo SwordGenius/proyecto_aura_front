@@ -1,16 +1,16 @@
-.citas-container {
+.citas-contenedor {
     width: 100%;
     height: 100%;
 }
 
 /* Estilos para la sección de usuario */
-.user {
+.seccion-usuario {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.user-paciente {
+.seccion-paciente {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -19,7 +19,7 @@
     padding-left: 20px;
 }
 
-.card-container {
+.contenedor-tarjetas {
     margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -27,7 +27,7 @@
 }
 
 /* Estilos de las tarjetas */
-.notification {
+.tarjeta-notificacion {
     display: flex;
     flex-direction: column;
     isolation: isolate;
@@ -41,7 +41,7 @@
     font-size: 16px;
 }
 
-.notification:before {
+.tarjeta-notificacion:before {
     position: absolute;
     content: "";
     inset: 0.0625rem;
@@ -50,7 +50,7 @@
     z-index: 2;
 }
 
-.notification:after {
+.tarjeta-notificacion:after {
     position: absolute;
     content: "";
     width: 0.25rem;
@@ -61,11 +61,11 @@
     z-index: 4;
 }
 
-.notification:hover:after {
+.tarjeta-notificacion:hover:after {
     transform: translateX(0.15rem);
 }
 
-.notititle {
+.titulo-notificacion {
     color: #32a6ff;
     padding: 0.65rem 0.25rem 0.4rem 1.25rem;
     font-weight: 500;
@@ -74,23 +74,19 @@
     z-index: 5;
 }
 
-.notification:hover .notititle {
+.tarjeta-notificacion:hover .titulo-notificacion {
     transform: translateX(0.15rem);
 }
 
-.notibody {
+.cuerpo-notificacion {
     color: #99999d;
     padding: 0 1.25rem;
     transition: transform 300ms ease;
     z-index: 5;
 }
 
-.notification:hover .notibody {
-    transform: translateX(0.25rem);
-}
-
-.notiglow,
-.notiborderglow {
+.brillo-tarjeta,
+.bordo-brillo-tarjeta {
     position: absolute;
     width: 20rem;
     height: 20rem;
@@ -100,58 +96,15 @@
     transition: opacity 300ms ease;
 }
 
-.notiglow {
+.brillo-tarjeta {
     z-index: 3;
 }
 
-.notiborderglow {
+.bordo-brillo-tarjeta {
     z-index: 1;
 }
 
-.notification:hover .notiglow,
-.notification:hover .notiborderglow {
+.tarjeta-notificacion:hover .brillo-tarjeta,
+.tarjeta-notificacion:hover .bordo-brillo-tarjeta {
     opacity: 0.1;
-}
-
-/* Nota fija en la pantalla */
-.note {
-    color: #32a6ff;
-    position: fixed;
-    top: 80%;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    font-size: 0.9rem;
-    width: 75%;
-}
-
-/* Estilos para botones de paginación */
-.pagination-button {
-    margin-top: 20px;
-}
-
-/* Estilos para dispositivos móviles */
-@media (max-width: 768px) {
-    .notification {
-        width: 100%;
-        height: auto;
-        margin-bottom: 20px;
-    }
-
-    .notiglow,
-    .notiborderglow {
-        width: 100%;
-        height: 100%;
-    }
-
-    .card-container {
-        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-    }
-
-    .user {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
 }

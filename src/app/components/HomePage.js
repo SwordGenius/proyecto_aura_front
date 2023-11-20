@@ -8,6 +8,8 @@ import AddQuery from "./AddQuery";
 import Calendario from "./Calendario";
 import Configuraciones from "./Configuraciones";
 import Guide from "./Guide";
+import Swal from 'sweetalert2';
+
 
 
 const Content = () => {
@@ -64,8 +66,21 @@ const Content = () => {
     }
 
     function cerrarSesion() {
-        alert("cerrar sesion");
-    }
+        Swal.fire({
+            title: '¿Estás seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, cerrar sesion',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Adios :)', '', 'success');
+
+                setTimeout(() => {
+                    navigate.push('/contentLink');
+                }, 2000);
+            }
+        });    }
 
     return (
         <div className="container-home">
