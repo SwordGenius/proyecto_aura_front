@@ -1,22 +1,24 @@
 "use client"
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { useRouter } from "next/navigation";
 import "../../styles/StylesConfiguracion.css";
 import Swal from 'sweetalert2';
+import axios from "axios";
+
 
 
 const Contfiguracion = () => {
     const navigate = useRouter();
     const [content, setContent] = useState(null);
     const [nameUser, setNameUser] = useState("Manuel Arturo");
-    const [nameProfesion, setNameProfesion] = useState("backend developer");
+    const [nameEmail, setNameEmail] = useState("backend developer");
+    const [namePassword, setNamePassword] = useState("backend developer");
     const [isEditing, setIsEditing] = useState(false);
     const [editedName, setEditedName] = useState(nameUser);
-    const [editedProfession, setEditedProfession] = useState(nameProfesion);
+    const [editedEmail, setEditedEmail] = useState(nameEmail);
+    const [editedPassword, setEditedPassword] = useState(namePassword);
+    const [id, setId] = useState(0);
 
-    function eliminar() {
-        alert("eliminar");
-    }
 
     function funtionDeleteUser() {
         Swal.fire({
@@ -28,6 +30,15 @@ const Contfiguracion = () => {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
+                try {
+                    axios.delete(`http://localhost:3300/usuarios/${id}`).then((response) => {
+                        console.log(response);
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+                } catch (error) {
+                    console.log(error);
+                }
                 Swal.fire('Gracias por probar nuestro software', '', 'success');
 
                 setTimeout(() => {
@@ -37,13 +48,47 @@ const Contfiguracion = () => {
         });
     }
 
+
+
     function funtionModificar() {
         setIsEditing(true);
     }
 
+    const setIdUser =  async () => {
+        try {
+            await axios.get('http://localhost:3300/usuarios/cookie', {withCredentials: true}).then((response) => {
+                console.log(response);
+                let IdResponse = response.data.id;
+                setId(IdResponse);
+            }).catch((error) => {
+                console.log(error);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        setIdUser().then(r => console.log("Id cargado"));
+    }, []);
+
     function saveChanges() {
         setNameUser(editedName);
-        setNameProfesion(editedProfession);
+        setNameEmail(editedEmail);
+        setNamePassword(editedPassword);
+        try {
+            axios.patch(`http://localhost:3300/usuarios/${id}`, {
+                nombre: editedName,
+                correo: editedEmail,
+                password: editedPassword
+            }).then((response) => {
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
+            } catch (error) {
+                console.log(error);
+        }
         setIsEditing(false);
     }
 
@@ -57,7 +102,8 @@ const Contfiguracion = () => {
                     <div className="card-info">
                         <div className="card-avatar"></div>
                         <div className="card-title">{nameUser}</div>
-                        <div className="card-subtitle">{nameProfesion}</div>
+                        <div className="card-subtitle">{nameEmail}</div>
+                        <div className="card-subtitle">{namePassword}</div>
                     </div>
                 </div>
 
@@ -74,8 +120,13 @@ const Contfiguracion = () => {
                         />
                         <input
                             type="text"
-                            value={editedProfession}
-                            onChange={(e) => setEditedProfession(e.target.value)}
+                            value={editedEmail}
+                            onChange={(e) => setEditedEmail(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            value={editedPassword}
+                            onChange={(e) => setEditedPassword(e.target.value)}
                         />
                         <button onClick={saveChanges}>Guardar Cambios</button>
                     </div>
