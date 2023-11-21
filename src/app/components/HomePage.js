@@ -106,13 +106,7 @@ const Content = () => {
                                 Citas
                             </span>
                         </label>
-
-                        <label>
-                            <input type="radio" name="radio" />
-                            <span onClick={() => { handleContentChange("calendario"); }}>
-                                Calendario
-                            </span>
-                        </label>
+                        
 
                         <label>
                             <input type="radio" name="radio" />

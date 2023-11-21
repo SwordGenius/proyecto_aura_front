@@ -26,6 +26,46 @@ const Cliente = () => {
             name: "Jhair",
             info:
                 "Endodoncia",
+        },{
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
+        },{
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
+        },{
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
+        },{
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
+        },{
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
+        },{
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
+        },{
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
+        },{
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
         },
     ];
 
