@@ -48,7 +48,7 @@
 
 
 .column-center h3{
-    margin-left: 16px;
+    margin-left: 32px;
 }
 
 .container-historial {
@@ -89,8 +89,6 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-left: 72px;
-    margin-right: 72px;
     margin-top: 32px;
     width: 100%;
     height: auto;

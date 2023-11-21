@@ -13,6 +13,9 @@
     height: auto;
 }
 
+.column-center h3{
+    margin-left: 32px;
+}
 
 
 .btn-subir {
@@ -34,8 +37,6 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-left: 72px;
-    margin-right: 72px;
     margin-top: 32px;
     width: 100%;
     height: auto;
