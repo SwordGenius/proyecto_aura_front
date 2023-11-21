@@ -1,7 +1,10 @@
+/* Contenedor de pacientes */
 .container-pacientes {
     max-width: 100%;
     max-height: 100%;
 }
+
+/* Contenedor de tarjetas */
 .container-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -10,7 +13,6 @@
     overflow-x: hidden;
     padding: 10px;
     max-width: 100%;
-
     max-height: 70vh;
     overflow-y: auto;
 }
@@ -24,10 +26,8 @@
     border-radius: 6px;
 }
 
-
-
-
-@media screen and (max-width: 767px) { /*esto es para estilos desde celulares*/
+@media screen and (max-width: 767px) {
+    /* Estilos para dispositivos móviles */
     .container-cards {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
@@ -38,8 +38,7 @@
     }
 }
 
-
-/*css del input*/
+/* Estilos del input */
 .group {
     margin-bottom: 10px;
     display: flex;
@@ -48,9 +47,10 @@
     position: relative;
     max-width: 290px;
     margin-left: 2.5rem; /* Ajuste el margen izquierdo para mover el input hacia la derecha */
+}
 
-}@media screen and (max-width: 767px) { /*esto es para estilos desde celulares*/
-    .group{
+@media screen and (max-width: 767px) {
+    .group {
         display: flex;
         line-height: 28px;
         align-items: center;
@@ -92,10 +92,7 @@
     height: 1rem;
 }
 
-
-
-/*estilos btn add*/
-
+/* Estilos del botón add */
 .add {
     border: none;
     display: flex;
@@ -115,14 +112,13 @@
     box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
     transition: all .6s ease;
     margin-left: 2.5rem; /* Ajuste el margen izquierdo para mover el input hacia la derecha */
-
 }
 
 .add:hover {
     box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
 }
 
-.add:focus,button:active {
+.add:focus, button:active {
     opacity: .85;
     box-shadow: none;
 }
@@ -132,16 +128,13 @@
     height: 1.25rem;
 }
 
-/*estilo de btn de siguiente y atras*/
-
-.pagination-buttons{
+/* Estilo de botones de paginación */
+.pagination-buttons {
     text-align: center;
     margin-top: 20px;
 }
 
-
-.btns-sig-atr
-{
+.btns-sig-atr {
     font-family: monospace;
     background-color: #f3f7fe;
     color: #6fc5ff;
@@ -158,11 +151,7 @@
     color: #fff;
 }
 
-
-
-
-/*cards nuevas*/
-
+/* Tarjetas nuevas */
 .section_our_solution .row {
     align-items: center;
 }
@@ -185,8 +174,8 @@
     box-shadow: 0 2px 4px 0 rgba(136, 144, 195, 0.2),
     0 5px 15px 0 rgba(37, 44, 97, 0.15);
     border-radius: 15px;
-    margin: 1px; /*separacion de arriba a abaho*/
-    padding: 70px; /* Aumenta el amcho*/
+    margin: 1px; /* Separación de arriba a abajo */
+    padding: 70px; /* Aumenta el ancho */
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -229,7 +218,6 @@
     background: #fff !important;
     color: #309df0;
 }
-
 
 .solution_card .solu_title div {
     color: #212121;
@@ -341,11 +329,7 @@
     width: 100%;
 }
 
-
-
-
-/*css de la ventana flotante*/
-
+/* CSS de la ventana flotante */
 .modal-content {
     background: #fff;
     padding: 20px;
@@ -376,7 +360,3 @@ input {
     border-radius: 4px;
     box-sizing: border-box;
 }
-
-
-
-

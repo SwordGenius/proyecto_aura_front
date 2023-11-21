@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import "../../styles/StylesConfiguracion.css";
 import Swal from 'sweetalert2';
 
+
 const Contfiguracion = () => {
     const navigate = useRouter();
     const [content, setContent] = useState(null);

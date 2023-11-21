@@ -1,19 +1,45 @@
 "use client"
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { useRouter } from "next/navigation";
 import "../../styles/StylesContenidoCliente.css";
-
+import Image from 'next/image'
 import Swal from 'sweetalert2';
 import Link from "next/link";
+import axios from "axios";
 
-const ContenidoCliente = () => {
+const ContenidoCliente = ({id}) => {
     const navigate = useRouter();
     const [notes, setNotes] = useState('');
     const nombreCliente = "Manuel";
-    const motivo = "Mantenimiento de pc";
+
+    const [motivo, setMotivo] = useState("Mantenimiento de pc");
+    const [isEditing, setIsEditing] = useState(false);
+    const [editedMotivo, setEditedMotivo] = useState(motivo);
+
+  
+    const [cliente, setCliente] = useState({
+        nombre: "",
+        edad: "",
+        notas: ""
+    });
+
+    const cargarCliente = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3300/clientes/${id}`);
+            let clienteindexado = response.data.cliente;
+            console.log(clienteindexado)
+            clienteindexado.notas = ""
+            setCliente(clienteindexado);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        cargarCliente().then(r => console.log("cliente cargado"));
+    }, [])
 
     const functionNotes = (e) => {
-
         setNotes(e.target.value);
     };
 
@@ -25,12 +51,35 @@ const ContenidoCliente = () => {
         navigate.push('/historial')
     }
 
-    function saveNote() {
-        Swal.fire(
-            'Exito',
-            'Su nota se a guardado',
-            'success'
-        )
+
+
+    function saveNote(event) {
+        event.preventDefault();
+        try {
+            let reemplazoNota = cliente;
+            reemplazoNota.notas = notes;
+            setCliente(reemplazoNota);
+            console.log(reemplazoNota)
+            axios.patch(`http://localhost:3300/clientes/${id}`, reemplazoNota).then((response) => {
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
+            Swal.fire(
+                'Exito',
+                'Su nota se a guardado',
+                'success'
+            )    } catch (error) {
+            console.log(error);
+            Swal.fire(
+                'Error',
+                'Su nota no se a guardado',
+                'error'
+            )
+
+        }
+
+
     }
 
     function funtionAtras() {
@@ -38,7 +87,12 @@ const ContenidoCliente = () => {
     }
 
     function funtionModificar() {
-        alert("modificar")
+        setIsEditing(true);
+    }
+
+    function saveChanges() {
+        setMotivo(editedMotivo);
+        setIsEditing(false);
     }
 
     function funtionEliminar() {
@@ -51,6 +105,11 @@ const ContenidoCliente = () => {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
+                axios.delete(`http://localhost:3300/clientes/${id}`).then((response) => {
+                    console.log(response);
+                }).catch((error) => {
+                    console.log(error);
+                });
                 Swal.fire('Cliente eliminado', '', 'success');
 
                 setTimeout(() => {
@@ -60,34 +119,48 @@ const ContenidoCliente = () => {
         });
     }
 
-
     return (
         <div className="container-cliente">
-            <Link href="/homePageLink" className="custom-button">Regresar</Link>
+
+            <button onClick={funtionAtras} className="custom-button">Regresar</button>
+
             <div className="card-information">
                 <div className="cardCliente">
                     <div className="card__img">
-                        <img src={"/assets/client.svg"} alt="cliente.png" />
+                        <Image
+                            src="/assets/client.svg"
+                            alt=" cliente.png"
+                            width={800}
+                            height={500}
+                        />
                     </div>
                     <div className="card__descr-wrapper">
-                        <p className="card__title">{nombreCliente}</p>
-                        <p className="card__descr">
-                            {motivo}
-                        </p>
+                        <p className="card__title">{cliente.nombre}</p>
+                        {isEditing ? (
+                            <input
+                                type="text"
+                                value={cliente.edad}
+                                onChange={(e) => setEditedMotivo(e.target.value)}
+                            />
+                        ) : (
+                            <p className="card__descr">{motivo}</p>
+                        )}
+
                         <div className="card__links">
                             <div>
-                                <a onClick={funtionModificar} className="link">Modificar</a>
+                                {isEditing ? (
+                                    <a onClick={saveChanges} className="link">Guardar Cambios</a>
+                                ) : (
+                                    <a onClick={funtionModificar} className="link">Modificar Motivo</a>
+                                )}
                             </div>
                             <div>
-
                                 <a onClick={funtionEliminar} className="link" >Eliminar</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
             <div className="content-container">
                 <div className="card-text">
                     <form className="notes">
@@ -97,7 +170,6 @@ const ContenidoCliente = () => {
                             value={notes}
                             onChange={functionNotes}
                         ></textarea>
-
                         <div className="conBtn">
                             <button onClick={saveNote}>Guardar Nota</button>
                         </div>
@@ -113,7 +185,6 @@ const ContenidoCliente = () => {
                         </div>
                         <button onClick={funtionDocument} className="card-button">Ver</button>
                     </div>
-
                     <div className="cardDocumentos">
                         <div className="card-details">
                             <p className="text-title">Historial</p>
@@ -121,12 +192,7 @@ const ContenidoCliente = () => {
                         </div>
                         <button onClick={funtionHistorial} className="card-button">Ver</button>
                     </div>
-
-
                 </div>
-
-
-
             </div>
         </div>
     );

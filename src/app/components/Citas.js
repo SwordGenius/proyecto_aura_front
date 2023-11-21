@@ -1,7 +1,8 @@
-"use client"
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { useRouter } from "next/navigation";
 import "../../styles/StylesCitas.css"
+import axios from "axios";
+
 const Citas = () => {
     const navigate = useRouter();
     const [notaDelUsuario, setNotaDelUsuario] = useState('');
@@ -12,7 +13,41 @@ const Citas = () => {
     const edad = "20";
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
     const cardsPerPage = 9;
+    const [page, setPage] = useState(1);
+    const [maxPage, setMaxPage] = useState(1);
+    const [citas, setCitas] = useState([])
 
+    const cargarCitar =  async () => {
+        try {
+            axios.get(`http://localhost:3300/citas?page=${page}&&limit=12`).then((response) => {
+                console.log(response);
+                let citaIndexada = response.data.data;
+                for (let cita in citaIndexada){
+                    axios.get(`http://localhost:3300/clientes/${citaIndexada[cita].id_cliente}`).then((response) => {
+                        console.log(response);
+                        citaIndexada[cita].cliente = response.data.cliente;
+                        console.log(citaIndexada[cita])
+                        console.log(citaIndexada[cita].cliente)
+                        console.log(citaIndexada[cita].cliente.nombre)
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+                }
+                setCitas(citaIndexada);
+
+                let pages = response.data.totalPages;
+                setMaxPage(pages);
+            }).catch((error) => {
+                console.log(error);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        cargarCitar().then(r => console.log(citas));
+    }, []);
     function nextPage() {
         setCurrentCardIndex(currentCardIndex + cardsPerPage);
     }
@@ -87,25 +122,27 @@ const Citas = () => {
 
 
     return (
-        <div className="citas-container">
+        <div className="citas-contenedor">
 
-            <div className="user">
+            <div className="seccion-usuario">
                 <h2>Citas disponibles </h2>
                 <h2>Hola, {miNombre}</h2>
             </div>
 
-            <div className="card-container">
+            <div className="contenedor-tarjetas">
 
-                {cardData
+                {citas?.length > 0 && citas
                     .slice(currentCardIndex, currentCardIndex + cardsPerPage)
-                    .map((data) => (    
-                        <div className="notification" key={data.id}>
-                            <div className="notiglow"></div>
-                            <div className="notiborderglow"></div>
-                            <div className="notititle">Motivo: {data.motivo}</div>
-                            <div className="notibody">Fecha: {data.fecha}</div>
-                            <div className="notititle">Nombre: {data.name}</div>
-                            <div className="notibody">Edad: {data.edad}</div>
+
+                    .map((data, index) => (
+                        <div className="tarjeta-notificacion" key={index}>
+                            <div className="brillo-tarjeta"></div>
+                            <div className="bordo-brillo-tarjeta"></div>
+                            <div className="titulo-notificacion">Motivo: {citas[index].motivo}</div>
+                            <div className="cuerpo-notificacion">Fecha: {data.fecha_cita}</div>
+                            <div className="titulo-notificacion">Nombre: {citas[index].cliente?.nombre}</div>
+                            <div className="cuerpo-notificacion">Edad: {citas[index].cliente?.edad}</div>
+
                         </div>
                     ))}
 
@@ -126,6 +163,3 @@ const Citas = () => {
     );
 };
 export default Citas;
-
-
-
