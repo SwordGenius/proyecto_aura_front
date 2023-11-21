@@ -3,7 +3,6 @@ import React, {useEffect, useState} from "react";
 import { useRouter } from "next/navigation";
 import "../../styles/StylesContenidoCliente.css";
 import Image from 'next/image'
-
 import Swal from 'sweetalert2';
 import axios from "axios";
 
@@ -11,7 +10,12 @@ const ContenidoCliente = ({id}) => {
     const navigate = useRouter();
     const [notes, setNotes] = useState('');
     const nombreCliente = "Manuel";
-    const motivo = "Mantenimiento de pc";
+
+    const [motivo, setMotivo] = useState("Mantenimiento de pc");
+    const [isEditing, setIsEditing] = useState(false);
+    const [editedMotivo, setEditedMotivo] = useState(motivo);
+
+  
     const [cliente, setCliente] = useState({
         nombre: "",
         edad: "",
@@ -35,7 +39,6 @@ const ContenidoCliente = ({id}) => {
     }, [])
 
     const functionNotes = (e) => {
-
         setNotes(e.target.value);
     };
 
@@ -46,6 +49,7 @@ const ContenidoCliente = ({id}) => {
     function funtionHistorial() {
         alert("historial")
     }
+
 
     function saveNote(event) {
         event.preventDefault();
@@ -72,6 +76,7 @@ const ContenidoCliente = ({id}) => {
             )
 
         }
+
     }
 
     function funtionAtras() {
@@ -79,7 +84,12 @@ const ContenidoCliente = ({id}) => {
     }
 
     function funtionModificar() {
-        alert("modificar")
+        setIsEditing(true);
+    }
+
+    function saveChanges() {
+        setMotivo(editedMotivo);
+        setIsEditing(false);
     }
 
     function funtionEliminar() {
@@ -106,18 +116,12 @@ const ContenidoCliente = ({id}) => {
         });
     }
 
-
     return (
         <div className="container-cliente">
-
             <button onClick={funtionAtras} className="custom-button">Regresar</button>
-
-
-
             <div className="card-information">
                 <div className="cardCliente">
                     <div className="card__img">
-
                         <Image
                             src="/assets/client.svg"
                             alt=" cliente.png"
@@ -127,23 +131,31 @@ const ContenidoCliente = ({id}) => {
                     </div>
                     <div className="card__descr-wrapper">
                         <p className="card__title">{cliente.nombre}</p>
-                        <p className="card__descr">
-                            {cliente.edad}
-                        </p>
+                        {isEditing ? (
+                            <input
+                                type="text"
+                                value={cliente.edad}
+                                onChange={(e) => setEditedMotivo(e.target.value)}
+                            />
+                        ) : (
+                            <p className="card__descr">{motivo}</p>
+                        )}
+
                         <div className="card__links">
                             <div>
-                                <a onClick={funtionModificar} className="link">Modificar</a>
+                                {isEditing ? (
+                                    <a onClick={saveChanges} className="link">Guardar Cambios</a>
+                                ) : (
+                                    <a onClick={funtionModificar} className="link">Modificar Motivo</a>
+                                )}
                             </div>
                             <div>
-
                                 <a onClick={funtionEliminar} className="link" >Eliminar</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
             <div className="content-container">
                 <div className="card-text">
                     <form className="notes">
@@ -153,16 +165,11 @@ const ContenidoCliente = ({id}) => {
                             value={notes}
                             onChange={functionNotes}
                         ></textarea>
-
                         <div className="conBtn">
                             <button onClick={saveNote}>Guardar Nota</button>
                         </div>
-
-
                     </form>
                 </div>
-
-
                 <div className="folders">
                     <div className="cardDocumentos">
                         <div className="card-details">
@@ -171,7 +178,6 @@ const ContenidoCliente = ({id}) => {
                         </div>
                         <button onClick={funtionDocument} class="card-button">Ver</button>
                     </div>
-
                     <div className="cardDocumentos">
                         <div className="card-details">
                             <p className="text-title">Historial</p>
@@ -179,12 +185,7 @@ const ContenidoCliente = ({id}) => {
                         </div>
                         <button onClick={funtionHistorial} className="card-button">Ver</button>
                     </div>
-
-
                 </div>
-
-
-
             </div>
         </div>
     );
