@@ -14,7 +14,7 @@ const Content = () => {
     }
 
     function login() {
-        navigate.push("/homePageLink")
+        navigate.push("/loginLink")
     }
 
 
