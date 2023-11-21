@@ -1,7 +1,7 @@
 "use client";
 import React, {useState} from 'react';
 import "../../styles/StylesLoginAndSignUp.css"
-import axios from "axios";
+import axios, {Axios} from "axios";
 import swal from "sweetalert2";
 import {useRouter} from "next/navigation";
 
@@ -14,7 +14,6 @@ function Login() {
     async function signUp(event) {
         event.preventDefault();
         try {
-            console.log(email, password, name);
             await axios.post("http://localhost:3300/usuarios", {
                 email: email,
                 password: password,
@@ -33,7 +32,7 @@ function Login() {
             await axios.post("http://localhost:3300/auth/login", {
                 email: email,
                 password: password
-            }).then((response) => {
+            },{withCredentials: true}).then((response) => {
                 console.log(response);
                 navigate.push("/homePageLink")
             }).catch((error) => {

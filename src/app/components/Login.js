@@ -4,7 +4,7 @@ import "../../styles/StylesLoginAndSignUp.css"
 import signUp from "@/app/components/SignUp";
 import {useRouter} from "next/navigation";
 import swal from "sweetalert2";
-import axios from "axios";
+import axios, {Axios} from "axios";
 
 function Login() {
     const navigate=useRouter()
@@ -16,6 +16,7 @@ function Login() {
     async function signIn(event) {
         event.preventDefault()
         try {
+            Axios.defaults.withCredentials = true;
             await axios.post("http://localhost:3300/auth/login", {
                 email: email,
                 password: password
