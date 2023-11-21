@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import "../../styles/StylesContenidoCliente.css";
+import Image from 'next/image'
 
 import Swal from 'sweetalert2';
 
@@ -69,7 +70,13 @@ const ContenidoCliente = () => {
             <div className="card-information">
                 <div className="cardCliente">
                     <div className="card__img">
-                        <img src={"/assets/client.svg"} alt="cliente.png" />
+
+                        <Image
+                            src="/assets/client.svg"
+                            alt=" cliente.png"
+                            width={800}
+                            height={500}
+                        />
                     </div>
                     <div className="card__descr-wrapper">
                         <p className="card__title">{nombreCliente}</p>
