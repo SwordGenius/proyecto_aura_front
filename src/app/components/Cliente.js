@@ -22,7 +22,26 @@ const Cliente = () => {
         //DE AQUI SE JALARAN LOS DATOS DE NOMBRE Y MOTIVO PARA LAS CARPETAS, ESTO LO HACE DINAMICO puto el que lo lea
 
         {
-
+            name: "Jhair",
+            info:
+                "Endodoncia",
+        },{
+            name: "Manuel",
+            info:
+                "Reparacion de celular",
+        },{
+            name: "Erick",
+            info:
+                "Reparacion de celular",
+        },{
+            name: "Villalobos",
+            info:
+                "Actualizacion de Ios",
+        },{
+            name: "Dario",
+            info:
+                "Cableado",
+        },{
             name: "Jhair",
             info:
                 "Endodoncia",
