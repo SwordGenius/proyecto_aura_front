@@ -1,17 +1,42 @@
 "use client"
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { useRouter } from "next/navigation";
 import "../../styles/StylesContenidoCliente.css";
 import Image from 'next/image'
 import Swal from 'sweetalert2';
+import axios from "axios";
 
-const ContenidoCliente = () => {
+const ContenidoCliente = ({id}) => {
     const navigate = useRouter();
     const [notes, setNotes] = useState('');
     const nombreCliente = "Manuel";
+
     const [motivo, setMotivo] = useState("Mantenimiento de pc");
     const [isEditing, setIsEditing] = useState(false);
     const [editedMotivo, setEditedMotivo] = useState(motivo);
+
+  
+    const [cliente, setCliente] = useState({
+        nombre: "",
+        edad: "",
+        notas: ""
+    });
+
+    const cargarCliente = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3300/clientes/${id}`);
+            let clienteindexado = response.data.cliente;
+            console.log(clienteindexado)
+            clienteindexado.notas = ""
+            setCliente(clienteindexado);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        cargarCliente().then(r => console.log("cliente cargado"));
+    }, [])
 
     const functionNotes = (e) => {
         setNotes(e.target.value);
@@ -25,12 +50,33 @@ const ContenidoCliente = () => {
         alert("historial")
     }
 
-    function saveNote() {
-        Swal.fire(
-            'Exito',
-            'Su nota se ha guardado',
-            'success'
-        );
+
+    function saveNote(event) {
+        event.preventDefault();
+        try {
+            let reemplazoNota = cliente;
+            reemplazoNota.notas = notes;
+            setCliente(reemplazoNota);
+            console.log(reemplazoNota)
+            axios.patch(`http://localhost:3300/clientes/${id}`, reemplazoNota).then((response) => {
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
+            Swal.fire(
+                'Exito',
+                'Su nota se a guardado',
+                'success'
+            )    } catch (error) {
+            console.log(error);
+            Swal.fire(
+                'Error',
+                'Su nota no se a guardado',
+                'error'
+            )
+
+        }
+
     }
 
     function funtionAtras() {
@@ -56,6 +102,11 @@ const ContenidoCliente = () => {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
+                axios.delete(`http://localhost:3300/clientes/${id}`).then((response) => {
+                    console.log(response);
+                }).catch((error) => {
+                    console.log(error);
+                });
                 Swal.fire('Cliente eliminado', '', 'success');
 
                 setTimeout(() => {
@@ -79,16 +130,17 @@ const ContenidoCliente = () => {
                         />
                     </div>
                     <div className="card__descr-wrapper">
-                        <p className="card__title">{nombreCliente}</p>
+                        <p className="card__title">{cliente.nombre}</p>
                         {isEditing ? (
                             <input
                                 type="text"
-                                value={editedMotivo}
+                                value={cliente.edad}
                                 onChange={(e) => setEditedMotivo(e.target.value)}
                             />
                         ) : (
                             <p className="card__descr">{motivo}</p>
                         )}
+
                         <div className="card__links">
                             <div>
                                 {isEditing ? (
