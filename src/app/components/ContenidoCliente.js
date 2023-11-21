@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import "../../styles/StylesContenidoCliente.css";
 import Image from 'next/image'
 import Swal from 'sweetalert2';
+import Link from "next/link";
 import axios from "axios";
 
 const ContenidoCliente = ({id}) => {
@@ -47,8 +48,9 @@ const ContenidoCliente = ({id}) => {
     }
 
     function funtionHistorial() {
-        alert("historial")
+        navigate.push('/historial')
     }
+
 
 
     function saveNote(event) {
@@ -76,6 +78,7 @@ const ContenidoCliente = ({id}) => {
             )
 
         }
+
 
     }
 
@@ -118,7 +121,9 @@ const ContenidoCliente = ({id}) => {
 
     return (
         <div className="container-cliente">
+
             <button onClick={funtionAtras} className="custom-button">Regresar</button>
+
             <div className="card-information">
                 <div className="cardCliente">
                     <div className="card__img">
@@ -168,15 +173,17 @@ const ContenidoCliente = ({id}) => {
                         <div className="conBtn">
                             <button onClick={saveNote}>Guardar Nota</button>
                         </div>
+
                     </form>
                 </div>
+
                 <div className="folders">
                     <div className="cardDocumentos">
                         <div className="card-details">
                             <p className="text-title">Documentos</p>
                             <p className="text-body">Aqui puedes ver todos los documentos de tu cliente</p>
                         </div>
-                        <button onClick={funtionDocument} class="card-button">Ver</button>
+                        <button onClick={funtionDocument} className="card-button">Ver</button>
                     </div>
                     <div className="cardDocumentos">
                         <div className="card-details">

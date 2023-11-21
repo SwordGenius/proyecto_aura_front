@@ -92,6 +92,7 @@ const Content = () => {
                     width={800}
                     height={500}
                 />
+
                 <div className="container">
                     <form className="botonesPrincipales">
                         <label>

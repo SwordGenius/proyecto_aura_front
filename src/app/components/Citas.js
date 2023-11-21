@@ -57,51 +57,62 @@ const Citas = () => {
     }
 
     const cardData = [{
+        id: 1,
+        name: nombrePaciente,
+        motivo: motivo,
+        fecha: fecha,
+        edad: edad
+        
+    },{
+        id: 2,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id: 3,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id: 4,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id:5,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id: 6,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id: 7,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id: 8,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
+        id: 9,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
         edad: edad
     },{
-        name: nombrePaciente,
-        motivo: motivo,
-        fecha: fecha,
-        edad: edad
-    },{
+        id: 10,
         name: nombrePaciente,
         motivo: motivo,
         fecha: fecha,
@@ -122,6 +133,7 @@ const Citas = () => {
 
                 {citas?.length > 0 && citas
                     .slice(currentCardIndex, currentCardIndex + cardsPerPage)
+
                     .map((data, index) => (
                         <div className="tarjeta-notificacion" key={index}>
                             <div className="brillo-tarjeta"></div>
@@ -130,6 +142,7 @@ const Citas = () => {
                             <div className="cuerpo-notificacion">Fecha: {data.fecha_cita}</div>
                             <div className="titulo-notificacion">Nombre: {citas[index].cliente?.nombre}</div>
                             <div className="cuerpo-notificacion">Edad: {citas[index].cliente?.edad}</div>
+
                         </div>
                     ))}
 

@@ -41,6 +41,7 @@ const Cliente = () => {
     }, [page]);
 
     const cardData = [
+
         //DE AQUI SE JALARAN LOS DATOS DE NOMBRE Y MOTIVO PARA LAS CARPETAS, ESTO LO HACE DINAMICO puto el que lo lea
 
         {
@@ -88,6 +89,7 @@ const Cliente = () => {
             info:
                 "Endodoncia",
         },{
+
 
             name: "Jhair",
             info:
@@ -231,9 +233,11 @@ const Cliente = () => {
             <div className="container-cards">
                 {clientes
                     .slice(currentCardIndex, currentCardIndex + cardsPerPage)
-                    .map((data, index) => (
+                    .map((data) => (
                         // eslint-disable-next-line react/jsx-key
-                        <div className="section_our_solution">
+                        <div 
+                        key={data.id}
+                        className="section_our_solution">
                             <div className="row">
                                 <div className="col-lg-12 col-md-12 col-sm-12">
                                     <div className="our_solution_category">
@@ -285,13 +289,16 @@ const Cliente = () => {
                                                         </g>
                                                     </svg>}
                                                 </div>
+
                                                 <div class="solu_title">
                                                     <div>{data.nombre + " " + data.apellido_paterno}</div>
+
                                                 </div>
-                                                <div class="solu_description">
+                                                <div className="solu_description">
                                                     <p>
                                                         {data.edad}
                                                     </p>
+
                                                     <button onClick={() => viewClient(data.id_cliente)} class="read_more_btn" type="button">Ver informacion</button>
                                                 </div>
                                             </div>
@@ -317,12 +324,12 @@ const Cliente = () => {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="2"
+                        strokeWidth="2"
                         stroke="currentColor"
                         aria-hidden="true"
                     >
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="#fffffff" stroke-width="2"></path>
-                        <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>                    </svg>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="#fffffff" strokeWidth="2"></path>
+                        <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>                    </svg>
                     ADD CLIENT
                 </button>
             </div>
