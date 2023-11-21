@@ -72,8 +72,8 @@ const AddQuerry = () => {
 
     return (
         <div className="query-container">
-            <div className="user">
-                <h2>Agregar citas</h2>
+            <div className="seccion-usuario2">
+                <h2>Citas disponibles </h2>
                 <h2>Hola, {miNombre}</h2>
             </div>
 

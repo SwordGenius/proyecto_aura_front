@@ -4,11 +4,13 @@
 }
 
 /* Estilos para la sección de usuario */
-.seccion-usuario {
+.seccion-usuario1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 22px;
 }
+
 
 .seccion-paciente {
     display: flex;
