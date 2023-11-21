@@ -9,6 +9,7 @@
     font-size: 24px;
     margin-top: 20px;
     margin-bottom: 20px;
+
 }
 
 
@@ -46,9 +47,11 @@
 }
 
 
+.column-center h3{
+    margin-left: 16px;
+}
 
-
-.container-home {
+.container-historial {
     display: flex;
     justify-content: center;
     align-items: center;

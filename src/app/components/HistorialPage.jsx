@@ -59,7 +59,7 @@ const Historial = () => {
     if(isLoading){
         return (
             <>
-            <div className="container-home">
+            <div className="container-historial">
             <Link  href="/contenidoClienteLink" className="custom-button">Regresar</Link>
                     <div className="column-center">
                         <div>

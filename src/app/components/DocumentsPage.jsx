@@ -66,7 +66,7 @@ const Documentos = () => {
     if(isLoading){
         return (
             <>
-            <div className="container-home">
+            <div className="container-documentos">
             <Link  href="/contenidoClienteLink" className="custom-button">Regresar</Link>
                     <div className="column-center">
                         <div>

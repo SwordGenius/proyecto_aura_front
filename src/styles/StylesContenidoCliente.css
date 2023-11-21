@@ -55,6 +55,7 @@
     border-radius: 5px;
     cursor: pointer;
     border-radius: 30px;
+    text-decoration: none;
 }
 
 .custom-button:hover{
