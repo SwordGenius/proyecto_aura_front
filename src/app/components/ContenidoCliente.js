@@ -11,9 +11,9 @@ const ContenidoCliente = ({id}) => {
     const [notes, setNotes] = useState('');
     const nombreCliente = "Manuel";
 
-    const [motivo, setMotivo] = useState("Mantenimiento de pc");
+    const [edad, setEdad] = useState("Mantenimiento de pc");
     const [isEditing, setIsEditing] = useState(false);
-    const [editedMotivo, setEditedMotivo] = useState(motivo);
+    const [editedEdad, setEditedEdad] = useState(edad);
 
   
     const [cliente, setCliente] = useState({
@@ -36,7 +36,7 @@ const ContenidoCliente = ({id}) => {
 
     useEffect(() => {
         cargarCliente().then(r => console.log("cliente cargado"));
-    }, [])
+    }, [edad])
 
     const functionNotes = (e) => {
         setNotes(e.target.value);
@@ -88,7 +88,30 @@ const ContenidoCliente = ({id}) => {
     }
 
     function saveChanges() {
-        setMotivo(editedMotivo);
+        setEdad(editedEdad);
+        try {
+            let reemplazoEdad = cliente;
+            reemplazoEdad.edad = editedEdad;
+            setCliente(reemplazoEdad);
+            console.log(reemplazoEdad)
+            axios.patch(`http://localhost:3300/clientes/${id}`, reemplazoEdad).then((response) => {
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
+            Swal.fire(
+                'Exito',
+                'Su edad se a guardado',
+                'success'
+            )
+        } catch (error) {
+            console.log(error);
+            Swal.fire(
+                'Error',
+                'Su edad no se a guardado',
+                'error'
+            )
+        }
         setIsEditing(false);
     }
 
@@ -134,11 +157,11 @@ const ContenidoCliente = ({id}) => {
                         {isEditing ? (
                             <input
                                 type="text"
-                                value={cliente.edad}
-                                onChange={(e) => setEditedMotivo(e.target.value)}
+                                value={editedEdad}
+                                onChange={(e) => setEditedEdad(e.target.value)}
                             />
                         ) : (
-                            <p className="card__descr">{motivo}</p>
+                            <p className="card__descr">{cliente.edad}</p>
                         )}
 
                         <div className="card__links">
@@ -146,7 +169,7 @@ const ContenidoCliente = ({id}) => {
                                 {isEditing ? (
                                     <a onClick={saveChanges} className="link">Guardar Cambios</a>
                                 ) : (
-                                    <a onClick={funtionModificar} className="link">Modificar Motivo</a>
+                                    <a onClick={funtionModificar} className="link">Modificar Edad</a>
                                 )}
                             </div>
                             <div>
