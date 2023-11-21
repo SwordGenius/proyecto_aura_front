@@ -4,13 +4,30 @@ import "../../styles/StylesDocumentos.css";
 import Image from "next/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
+import axios from "axios";
+import {useSearchParams} from "next/navigation";
 
 const Documentos = () => {
     const [isLoading, setisLoading] = useState(true);
     const [isInformation, setisInformation] = useState(false);
     const [response, setResponse] = useState(false);
+    const [data, setData] = useState([]);
+    const search = useSearchParams()
+
+    const cargarDocumentos = async () => {
+        try {
+            const response = await axios.get("http://localhost:3300/documentos", {
+                withCredentials: true,
+            })
+            let documentos = response.data.data;
+            setData(documentos);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     useEffect(() => {
+        cargarDocumentos().then(r => console.log(r));
         setTimeout(() => {
             setisLoading(false);
         }, 1000);
@@ -91,7 +108,19 @@ const Documentos = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 const { file, descripcion } = result.value;
-                // Aquí puedes hacer algo con el archivo y la descripción, por ejemplo, enviarlos a tu servidor.
+                try {
+                    const formData = new FormData();
+                    formData.append("documento_pdf", file);
+                    formData.append("tipo_documento", descripcion);
+                    formData.append("id_cliente", search.get("id"));
+                    axios.post("http://localhost:3300/documentos", formData, {
+                        withCredentials: true,
+                    }).then(r => {
+                        console.log(r.data)
+                    });
+                } catch (error) {
+                    Swal.fire("Error", "No se pudo subir el documento", "error");
+                }
                 Swal.fire(`Documento subido con éxito\nDescripción: ${descripcion}`, "", "success");
             }
         });
@@ -156,16 +185,16 @@ const Documentos = () => {
                             Subir Documento
                         </button>
                         <div className="pdf-grid">
-                            {dataExample.map((pdf) => (
-                                <div key={pdf.id} className="pdf-item">
+                            {data.map((pdf, index) => (
+                                <div key={index} className="pdf-item">
                                     <Image
                                         width={70}
                                         height={70}
                                         priority={false}
-                                        src="/pdf.png"
-                                        alt="pdfimg"
+                                        src={pdf.documento_pdf}
+                                        alt={pdf.tipo_documento}
                                     />
-                                    <p>{pdf.info}</p>
+                                    <p>{pdf.tipo_documento}</p>
                                 </div>
                             ))}
                         </div>

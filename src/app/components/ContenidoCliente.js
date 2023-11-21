@@ -44,11 +44,11 @@ const ContenidoCliente = ({id}) => {
     };
 
     function funtionDocument() {
-        navigate.push('/documentosLink');
+        navigate.push(`/documentosLink?id=${id}`);
     }
 
     function funtionHistorial() {
-        navigate.push('/historial')
+        navigate.push(`/historial`);
     }
 
 
