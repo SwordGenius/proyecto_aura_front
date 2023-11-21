@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "../../styles/StylesCliente.css";
 import { useRouter } from "next/navigation";
 import swal from "sweetalert2";
-import axios from "axios";
+import axios, {Axios} from "axios";
 
 const Cliente = () => {
     const navigate = useRouter();
