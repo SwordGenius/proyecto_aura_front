@@ -1,9 +1,9 @@
-.container-Configuracion{
+.container-Configuracion {
     width: 100%;
     height: auto;
 }
 
-.titulo{
+.titulo {
     text-align: center;
 }
 
@@ -16,17 +16,14 @@
     height: 50vh;
 }
 
-
-
-
-/*estilos card*/
-
+/* Estilos de la tarjeta de usuario */
 .carduser {
-    width: 590px;
-    height: 254px;
+    width: 90%;
+    max-width: 590px;
     background: #ffffff;
     padding: 2rem 1.5rem;
     transition: box-shadow .3s ease, transform .2s ease;
+    box-sizing: border-box;
 }
 
 .card-info {
@@ -38,7 +35,6 @@
     font-size: 20px;
 }
 
-/*Image*/
 .card-avatar {
     --size: 100px;
     background: linear-gradient(to top, #f1e1c1 0%, #2ba8fb 100%);
@@ -49,7 +45,6 @@
     margin-bottom: 1rem;
 }
 
-/*Text*/
 .card-title {
     color: #333;
     font-size: 1.5em;
@@ -61,9 +56,6 @@
     color: #859ba8;
     font-size: 0.8em;
 }
-
-/*Hover*/
-
 
 .carduser:hover .card-info {
     transform: translateY(-5%);
@@ -83,14 +75,11 @@
     transform: scale(1.1);
 }
 
-
-/*css de los bototnes de eliminar y modificar*/
-
-.card-btns{
+/* Botones de eliminar y modificar */
+.card-btns {
     display: flex;
     gap: 20px;
 }
-
 
 .btnOption {
     padding: 1.3em 3em;
@@ -119,10 +108,7 @@
     background-color: #6fc5ff;
 }
 
-
-/*estilos para la ventana flotante*/
-
-/* Estilo para la ventana emergente de edición */
+/* Estilos para la ventana flotante de edición */
 .edit-popup {
     position: fixed;
     top: 50%;
@@ -158,5 +144,3 @@
 .edit-popup button:hover {
     background: #0056b3;
 }
-
-

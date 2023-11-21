@@ -7,6 +7,10 @@ import Citas from "./Citas";
 import AddQuery from "./AddQuery";
 import Calendario from "./Calendario";
 import Configuraciones from "./Configuraciones";
+import Guide from "./Guide";
+import Swal from 'sweetalert2';
+import Image from 'next/image'
+
 
 
 const Content = () => {
@@ -42,7 +46,9 @@ const Content = () => {
                 setContent(<Configuraciones />);
                 break;
 
-            case "verInformacionCliente":
+            case "guiaUsuario":
+                setContent(<Guide />);
+
                 break;
 
             default:
@@ -55,10 +61,38 @@ const Content = () => {
         alert("configuracion");
     }
 
+    function redireccionGuia() {
+    }
+
+    function cerrarSesion() {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, cerrar sesion',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Adios :)', '', 'success');
+
+                setTimeout(() => {
+
+                    navigate.push('/contentLink');
+                }, 2000);
+            }
+        });    }
+
     return (
         <div className="container-home">
             <section className="section-left">
-                <img className="imgLogo" src={"/assets/Aura-logo2.png"} alt="AURA-logo.png" />  
+                <Image
+                    className="imgLogo"
+                    src="/assets/Aura-logo2.png"
+                    alt="AURA-logo.png"
+                    width={800}
+                    height={500}
+                />
+
                 <div className="container">
                     <form className="botonesPrincipales">
                         <label>
@@ -73,13 +107,7 @@ const Content = () => {
                                 Citas
                             </span>
                         </label>
-
-                        <label>
-                            <input type="radio" name="radio" />
-                            <span onClick={() => { handleContentChange("calendario"); }}>
-                                Calendario
-                            </span>
-                        </label>
+                        
 
                         <label>
                             <input type="radio" name="radio" />
@@ -88,10 +116,26 @@ const Content = () => {
                             </span>
                         </label>
 
+
+
                         <label>
+                            <input type="radio" name="radio" />
+                            <span  onClick={() => { handleContentChange("guiaUsuario"); }}>
+                                Guia de Usuario
+                            </span>
+                        </label>
+
+                        <label className="inferior">
                             <input type="radio" name="radio" />
                             <span onClick={() => { handleContentChange("configuracion"); }}>
                                 Configuracion
+                            </span>
+                        </label>
+
+                        <label className="inferior">
+                            <input type="radio" name="radio" />
+                            <span onClick={cerrarSesion}>
+                                Cerrar Sesion
                             </span>
                         </label>
                     </form>

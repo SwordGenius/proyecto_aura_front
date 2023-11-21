@@ -1,16 +1,16 @@
-.citas-container{
+.citas-contenedor {
     width: 100%;
     height: 100%;
 }
 
-.user {
+/* Estilos para la sección de usuario */
+.seccion-usuario {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-
-.user-paciente {
+.seccion-paciente {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -19,16 +19,15 @@
     padding-left: 20px;
 }
 
-.card-container {
+.contenedor-tarjetas {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 20px;
 }
 
-/*css de las cards*/
-
-.notification {
+/* Estilos de las tarjetas */
+.tarjeta-notificacion {
     display: flex;
     flex-direction: column;
     isolation: isolate;
@@ -40,36 +39,34 @@
     overflow: hidden;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 16px;
-    --gradient: linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff);
-    --color: #32a6ff
 }
 
-.notification:before {
+.tarjeta-notificacion:before {
     position: absolute;
     content: "";
     inset: 0.0625rem;
     border-radius: 0.9375rem;
     background: #ffffff;
-    z-index: 2
+    z-index: 2;
 }
 
-.notification:after {
+.tarjeta-notificacion:after {
     position: absolute;
     content: "";
     width: 0.25rem;
     inset: 0.65rem auto 0.65rem 0.5rem;
     border-radius: 0.125rem;
-    background: var(--gradient);
+    background: linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff);
     transition: transform 300ms ease;
     z-index: 4;
 }
 
-.notification:hover:after {
-    transform: translateX(0.15rem)
+.tarjeta-notificacion:hover:after {
+    transform: translateX(0.15rem);
 }
 
-.notititle {
-    color: var(--color);
+.titulo-notificacion {
+    color: #32a6ff;
     padding: 0.65rem 0.25rem 0.4rem 1.25rem;
     font-weight: 500;
     font-size: 1.1rem;
@@ -77,23 +74,19 @@
     z-index: 5;
 }
 
-.notification:hover .notititle {
-    transform: translateX(0.15rem)
+.tarjeta-notificacion:hover .titulo-notificacion {
+    transform: translateX(0.15rem);
 }
 
-.notibody {
+.cuerpo-notificacion {
     color: #99999d;
     padding: 0 1.25rem;
     transition: transform 300ms ease;
     z-index: 5;
 }
 
-.notification:hover .notibody {
-    transform: translateX(0.25rem)
-}
-
-.notiglow,
-.notiborderglow {
+.brillo-tarjeta,
+.bordo-brillo-tarjeta {
     position: absolute;
     width: 20rem;
     height: 20rem;
@@ -103,63 +96,15 @@
     transition: opacity 300ms ease;
 }
 
-.notiglow {
+.brillo-tarjeta {
     z-index: 3;
 }
 
-.notiborderglow {
+.bordo-brillo-tarjeta {
     z-index: 1;
 }
 
-.notification:hover .notiglow {
-    opacity: 0.1
-}
-
-.notification:hover .notiborderglow {
-    opacity: 0.1
-}
-
-.note {
-    color: var(--color);
-    position: fixed;
-    top: 80%;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    font-size: 0.9rem;
-    width: 75%;
-}
-
-.pagination-button{
-    margin-top: 20px;
-}
-
-
-/*css para moviles*/
-
-@media (max-width: 768px) {
-    .notification {
-
-        width: 100%;
-        height: auto;
-        margin-bottom: 20px;
-    }
-
-    .notiglow,
-    .notiborderglow {
-        width: 100%;
-        height: 100%;
-    }
-
-    .card-container {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .user {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
+.tarjeta-notificacion:hover .brillo-tarjeta,
+.tarjeta-notificacion:hover .bordo-brillo-tarjeta {
+    opacity: 0.1;
 }

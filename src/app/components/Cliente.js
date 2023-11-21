@@ -1,86 +1,175 @@
 "use client"
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import "../../styles/StylesCliente.css";
 import { useRouter } from "next/navigation";
+import swal from "sweetalert2";
+import axios, {Axios} from "axios";
 
 const Cliente = () => {
     const navigate = useRouter();
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
-    const [isModalOpen, setIsModalOpen] = useState(false); // Estado para la visibilidad del modal
     const cardsPerPage = 6;
-
-    const [clientInfo, setClientInfo] = useState({ //variables donde se guardan los nuevos clientes
+    const [isAddClientModalOpen, setIsAddClientModalOpen] = useState(false);
+    const [clientInfo, setClientInfo] = useState({
         nombres: "",
         apellidoPaterno: "",
         apellidoMaterno: "",
-        edad: "",
-
+        edad: ""
     });
+    const [clientes, setClientes] = useState([]);
+    const [page, setPage] = useState(1);
+    const [maxPage, setMaxPage] = useState(0);
+
+    const cargarClientes = async () => {
+        try {
+            await axios.get("http://localhost:3300/clientes?page="+page+"&&limit=6", {withCredentials: true}).then((response) => {
+                console.log(response);
+                let clientes = response.data.data;
+                let totalPages = response.data.totalPages;
+                setClientes(clientes);
+                setMaxPage(totalPages);
+                console.log(clientes);
+            }).catch((error) => {
+                console.log(error);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        cargarClientes().then(r => console.log("Clientes cargados"));
+    }, [page]);
 
     const cardData = [
+
+        //DE AQUI SE JALARAN LOS DATOS DE NOMBRE Y MOTIVO PARA LAS CARPETAS, ESTO LO HACE DINAMICO puto el que lo lea
+
         {
-            id: 1,
             name: "Jhair",
-            info:"Endodoncia",
-        },
-        {
-            id: 2,
+            info:
+                "Endodoncia",
+        },{
+            name: "Manuel",
+            info:
+                "Reparacion de celular",
+        },{
+            name: "Erick",
+            info:
+                "Reparacion de celular",
+        },{
+            name: "Villalobos",
+            info:
+                "Actualizacion de Ios",
+        },{
+            name: "Dario",
+            info:
+                "Cableado",
+        },{
             name: "Jhair",
-            info:"Endodoncia",
-        },
-        {
-            id: 3,
+            info:
+                "Endodoncia",
+        },{
+
             name: "Jhair",
-            info:"Endodoncia",
-        },
-        {
-            id: 4,
+            info:
+                "Endodoncia",
+        },{
+
             name: "Jhair",
-            info:"Endodoncia",
-        },
-        {
-            id: 5,
+            info:
+                "Endodoncia",
+        },{
+
             name: "Jhair",
-            info:"Endodoncia",
-        },
-        {
-            id: 6,
+            info:
+                "Endodoncia",
+        },{
+
             name: "Jhair",
-            info:"Endodoncia",
+            info:
+                "Endodoncia",
+        },{
+
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
+        },{
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
+        },{
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
+        },{
+
+            name: "Jhair",
+            info:
+                "Endodoncia",
         },
     ];
 
-
     function addClient() {
-        setIsModalOpen(true);
+        // Abre el modal de agregar cliente
+        setIsAddClientModalOpen(true);
     }
 
-    function closeModal() {
-        // Cerrar el modal y restablecer clientInfo
-        setIsModalOpen(false);
-        setClientInfo({
-            name: "",
-            lastName: "",
-            reason: "",
-        });
+    function closeAddClientModal() {
+        // Cierra el modal de agregar cliente
+        setIsAddClientModalOpen(false);
     }
 
-    function saveClient() {
-        // Realizar acciones con clientInfo
-        alert("Cliente agregado");
+
+
+    async function saveClient() {
+        try {
+            await axios.post("http://localhost:3300/clientes",  {
+                nombre: clientInfo.nombres,
+                apellido_P: clientInfo.apellidoPaterno,
+                apellido_M: clientInfo.apellidoMaterno,
+                edad: clientInfo.edad,
+            }, { withCredentials : true,}  ).then(async (response) => {
+                console.log(response);
+                await swal.fire({
+                    icon: "success",
+                    title: "Success",
+                    text: "Cliente registrado correctamente",
+                });
+            }).catch(async (error) => {
+                console.log(error);
+                await swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Error al registrar cliente"
+                });
+            });
+
+        } catch (error) {
+            console.log(error);
+            await swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Error al registrar cliente"
+            });
+        }
         closeModal();
     }
 
-    function viewClient() {
-        navigate.push("/contenidoClienteLink")
+    function viewClient(id) {
+        navigate.push(`/contenidoClienteLink?id=${id}`);
     }
 
     function nextPage() {
-        setCurrentCardIndex(currentCardIndex + cardsPerPage);
+        if (page < maxPage)
+        setPage(page+1);
     }
 
     function prevPage() {
-        setCurrentCardIndex(currentCardIndex - cardsPerPage);
+        if (page > 1)
+        setPage(page-1);
     }
 
     function handleNameChange(e) {
@@ -124,6 +213,7 @@ const Cliente = () => {
     }
 
 
+  
 
     return (
         <div className="container-pacientes">
@@ -141,7 +231,7 @@ const Cliente = () => {
             </div>
 
             <div className="container-cards">
-                {cardData
+                {clientes
                     .slice(currentCardIndex, currentCardIndex + cardsPerPage)
                     .map((data) => (
                         // eslint-disable-next-line react/jsx-key
@@ -155,7 +245,7 @@ const Cliente = () => {
                                             <div className="solution_card">
                                                 <div className="hover_color_bubble"></div>
                                                 <div className="so_top_icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" viewBox="0 0 512 512" height="50" id="Layer_1">
+                                                    {data.fotografia? <img src={data.fotografia} alt="..."/> : <svg xmlns="http://www.w3.org/2000/svg" width="40" viewBox="0 0 512 512" height="50" id="Layer_1">
                                                         <g>
                                                             <g>
                                                                 <g>
@@ -197,16 +287,19 @@ const Cliente = () => {
                                                                 <path d="m505.932 246.439c-3.897-3.878-9.255-5.867-14.695-6.014l-5.668.028v-10.719c0-6.529-3.878-13.427-9.433-16.862v-15.098c0-31.069-48.372-30.934-48.372.146v15.1c-5.659 3.498-9.455 9.741-9.455 16.852v10.982c-24.966 1.7-25.037 39.745.028 41.232.16 33.575.152 66.6-.028 100.737-.049 9.414 14.949 9.966 15 .079.18-34.166.188-67.22.029-100.823l37.211-.185s-.048 110.848-.048 160.784c0 24.338-37.219 24.5-37.219-.253l.013-13.677c.585-9.68-14.387-10.583-14.973-.904v12.834c0 11 3.402 20.316 9.988 26.869.586 15.693 7.198 30.878 18.369 41.956 3.205 3.18 7.642 2.208 10.744-.182 11.365-11.385 17.769-26.394 18.169-42.414 4.951-4.931 9.908-9.896 9.908-26.896l.006-68.351c12.97 3.689 26.494-6.348 26.494-19.946v-90.672c0-5.523-2.155-10.709-6.068-14.603zm-72.623-5.727v-10.841c0-2.219 1.523-4.08 3.573-4.633l30.025-.149c.84.208 1.615.605 2.243 1.231.915.911 1.419 2.123 1.419 3.414v10.794zm18.671-52c4.604 0 9.155 4.514 9.155 9.062v12.166l-18.372.091v-12.111c.001-5.053 4.133-9.183 9.217-9.208zm-.011 303.901c-3.487-4.942-6.009-10.531-7.417-16.406 2.322.503 4.674.765 7.027.765 2.627 0 5.253-.326 7.839-.957-1.374 5.964-3.892 11.587-7.449 16.598zm45.031-140.899c0 7.101-11.452 7.66-11.452.131 0 0 .013-70.974.021-77.48.005-4.196-3.483-7.509-7.558-7.509l-58.389.29c-7.242 0-7.073-11.331.074-11.366l71.615-.355c3.463.295 5.359 2.168 5.688 5.617v90.672z"></path>
                                                             </g>
                                                         </g>
-                                                    </svg>
+                                                    </svg>}
                                                 </div>
-                                                <div className="solu_title">
-                                                    <div>{data.name}</div>
+
+                                                <div class="solu_title">
+                                                    <div>{data.nombre + " " + data.apellido_paterno}</div>
+
                                                 </div>
                                                 <div className="solu_description">
                                                     <p>
-                                                        {data.info}
+                                                        {data.edad}
                                                     </p>
-                                                    <button onClick={viewClient} className="read_more_btn" type="button">Ver informacion</button>
+
+                                                    <button onClick={() => viewClient(data.id_cliente)} class="read_more_btn" type="button">Ver informacion</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -219,12 +312,10 @@ const Cliente = () => {
             </div>
 
             <div className="pagination-buttons">
-                {currentCardIndex > 0 && (
                     <button className="btns-sig-atr" onClick={prevPage}>Atrás</button>
-                )}
-                {currentCardIndex + cardsPerPage < cardData.length && (
+
                     <button className="btns-sig-atr"  onClick={nextPage}>Siguiente</button>
-                )}
+
             </div>
 
             <div className="btn-add">
@@ -243,44 +334,36 @@ const Cliente = () => {
                 </button>
             </div>
 
-
-            {isModalOpen && (
-
-                <div className="modal">
-
-                    <div className="modal-content">
-                        <span className="close" onClick={closeModal}>
+            {isAddClientModalOpen && (
+                <div className="modal-container">
+                    <div className="modal-content1">
+                        <span className="modal-close1" onClick={closeAddClientModal}>
                             &times;
                         </span>
                         <h2>Agregar Cliente</h2>
-                        <label>Nombres:</label>
-                        <input
-                            type="text"
-                            value={clientInfo.nombres}
-                            onChange={handleNameChange}
-                        />
+
+                        <label>Nombre:</label>
+                        <input type="text" value={clientInfo.nombres} onChange={handleNameChange} />
+
                         <label>Apellido Paterno:</label>
-                        <input
-                            type="text"
-                            value={clientInfo.apellidoPaterno}
-                            onChange={handleLastNameChange}
-                        />
+                        <input type="text" value={clientInfo.apellidoPaterno} onChange={handleNameChange} />
+
                         <label>Apellido Materno:</label>
-                        <input
-                            type="text"
-                            value={clientInfo.apellidoMaterno}
-                            onChange={handleMaternoChange}
-                        />
+                        <input type="text" value={clientInfo.apellidoMaterno} onChange={handleNameChange} />
+
                         <label>Edad:</label>
-                        <input
-                            type="text"
-                            value={clientInfo.edad}
-                            onChange={handleEdadChange}
-                        />
-                        {/* ... (otros elementos) */}
+
+                        <input type="text" value={clientInfo.edad} onChange={handleNameChange} />
+
+                        <button type="button" onClick={saveClient}>
+                            Aceptar
+                        </button>
                     </div>
                 </div>
             )}
+
+
+
         </div>
     );
 };
