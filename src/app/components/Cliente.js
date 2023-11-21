@@ -2,6 +2,8 @@
 import React, {useEffect, useState} from "react";
 import "../../styles/StylesCliente.css";
 import { useRouter } from "next/navigation";
+import swal from "sweetalert2";
+import axios, {Axios} from "axios";
 
 const Cliente = () => {
     const navigate = useRouter();
@@ -38,8 +40,39 @@ const Cliente = () => {
     }
 
 
-    function saveClient() {
-        alert("Cliente agregado");
+
+    async function saveClient() {
+        try {
+            await axios.post("http://localhost:3300/clientes",  {
+                nombre: clientInfo.nombres,
+                apellido_P: clientInfo.apellidoPaterno,
+                apellido_M: clientInfo.apellidoMaterno,
+                edad: clientInfo.edad,
+            }, { withCredentials : true,}  ).then(async (response) => {
+                console.log(response);
+                await swal.fire({
+                    icon: "success",
+                    title: "Success",
+                    text: "Cliente registrado correctamente",
+                });
+            }).catch(async (error) => {
+                console.log(error);
+                await swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Error al registrar cliente"
+                });
+            });
+
+        } catch (error) {
+            console.log(error);
+            await swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Error al registrar cliente"
+            });
+        }
+        closeModal();
     }
 
     function viewClient() {
@@ -95,9 +128,7 @@ const Cliente = () => {
     }
 
 
-    function agregarCliente() {
-
-    }
+  
 
     return (
         <div className="container-pacientes">
@@ -233,9 +264,10 @@ const Cliente = () => {
                         <input type="text" value={clientInfo.apellidoMaterno} onChange={handleNameChange} />
 
                         <label>Edad:</label>
+
                         <input type="text" value={clientInfo.edad} onChange={handleNameChange} />
 
-                        <button type="button" onClick={agregarCliente}>
+                        <button type="button" onClick={saveClient}>
                             Aceptar
                         </button>
                     </div>

@@ -1,17 +1,53 @@
 "use client";
 import React, {useState} from 'react';
 import "../../styles/StylesLoginAndSignUp.css"
+import axios, {Axios} from "axios";
+import swal from "sweetalert2";
+import {useRouter} from "next/navigation";
 import Image from 'next/image'
+
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
+    const navigate = useRouter();
 
-    function signUp() {
-        alert("email"+ email)
-        alert("pass"+ password)
-        alert("name"+ name)
+    async function signUp(event) {
+        event.preventDefault();
+        try {
+            await axios.post("http://localhost:3300/usuarios", {
+                email: email,
+                password: password,
+                nombre: name
+            }).then((response) => {
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
+            await swal.fire({
+                icon: "success",
+                title: "Success",
+                text: "Usuario registrado correctamente",
+
+            });
+            await axios.post("http://localhost:3300/auth/login", {
+                email: email,
+                password: password
+            },{withCredentials: true}).then((response) => {
+                console.log(response);
+                navigate.push("/homePageLink")
+            }).catch((error) => {
+                console.log(error);
+            })
+        } catch (error) {
+            console.log(error);
+            await swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Error al registrarse"
+            });
+        }
     }
 
     return (
