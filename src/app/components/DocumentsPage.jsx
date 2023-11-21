@@ -66,20 +66,23 @@ const Documentos = () => {
         Swal.fire({
             title: "Subir Documento",
             html:
-                '<input type="file" id="fileInput" accept=".pdf" style="margin-bottom: 10px" /><p>Arrastra el documento o haz click para seleccionar uno</p>',
+                '<input type="file" id="fileInput" accept=".pdf" style="margin-bottom: 10px" />' +
+                '<input type="text" id="descripcionInput" placeholder="Ingrese una descripción" style="margin-bottom: 10px" />',
             showCancelButton: true,
             confirmButtonText: "Subir",
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
             preConfirm: () => {
                 const fileInput = document.getElementById("fileInput");
+                const descripcionInput = document.getElementById("descripcionInput");
                 const file = fileInput.files[0];
+                const descripcion = descripcionInput.value;
                 return new Promise((resolve) => {
                     setTimeout(() => {
-                        if (file) {
-                            resolve();
+                        if (file && descripcion) {
+                            resolve({ file, descripcion });
                         } else {
-                            Swal.showValidationMessage("Debes seleccionar un documento");
+                            Swal.showValidationMessage("Debes seleccionar un documento y proporcionar una descripción");
                         }
                     }, 1000);
                 });
@@ -87,11 +90,13 @@ const Documentos = () => {
             allowOutsideClick: () => !Swal.isLoading(),
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire("Documento subido con éxito", "", "success");
+                const { file, descripcion } = result.value;
+                // Aquí puedes hacer algo con el archivo y la descripción, por ejemplo, enviarlos a tu servidor.
+                Swal.fire(`Documento subido con éxito\nDescripción: ${descripcion}`, "", "success");
             }
         });
     };
-
+    
     if (isLoading) {
         return (
             <>
