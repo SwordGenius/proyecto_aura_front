@@ -3,17 +3,17 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import "../../styles/StylesContenidoCliente.css";
 import Image from 'next/image'
-
 import Swal from 'sweetalert2';
 
 const ContenidoCliente = () => {
     const navigate = useRouter();
     const [notes, setNotes] = useState('');
     const nombreCliente = "Manuel";
-    const motivo = "Mantenimiento de pc";
+    const [motivo, setMotivo] = useState("Mantenimiento de pc");
+    const [isEditing, setIsEditing] = useState(false);
+    const [editedMotivo, setEditedMotivo] = useState(motivo);
 
     const functionNotes = (e) => {
-
         setNotes(e.target.value);
     };
 
@@ -28,16 +28,22 @@ const ContenidoCliente = () => {
     function saveNote() {
         Swal.fire(
             'Exito',
-            'Su nota se a guardado',
+            'Su nota se ha guardado',
             'success'
-        )    }
+        );
+    }
 
     function funtionAtras() {
         navigate.push('/homePageLink');
     }
 
     function funtionModificar() {
-        alert("modificar")
+        setIsEditing(true);
+    }
+
+    function saveChanges() {
+        setMotivo(editedMotivo);
+        setIsEditing(false);
     }
 
     function funtionEliminar() {
@@ -59,18 +65,12 @@ const ContenidoCliente = () => {
         });
     }
 
-
     return (
         <div className="container-cliente">
-
             <button onClick={funtionAtras} className="custom-button">Regresar</button>
-
-
-
             <div className="card-information">
                 <div className="cardCliente">
                     <div className="card__img">
-
                         <Image
                             src="/assets/client.svg"
                             alt=" cliente.png"
@@ -80,23 +80,30 @@ const ContenidoCliente = () => {
                     </div>
                     <div className="card__descr-wrapper">
                         <p className="card__title">{nombreCliente}</p>
-                        <p className="card__descr">
-                            {motivo}
-                        </p>
+                        {isEditing ? (
+                            <input
+                                type="text"
+                                value={editedMotivo}
+                                onChange={(e) => setEditedMotivo(e.target.value)}
+                            />
+                        ) : (
+                            <p className="card__descr">{motivo}</p>
+                        )}
                         <div className="card__links">
                             <div>
-                                <a onClick={funtionModificar} className="link">Modificar</a>
+                                {isEditing ? (
+                                    <a onClick={saveChanges} className="link">Guardar Cambios</a>
+                                ) : (
+                                    <a onClick={funtionModificar} className="link">Modificar Motivo</a>
+                                )}
                             </div>
                             <div>
-
                                 <a onClick={funtionEliminar} className="link" >Eliminar</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
             <div className="content-container">
                 <div className="card-text">
                     <form className="notes">
@@ -106,16 +113,11 @@ const ContenidoCliente = () => {
                             value={notes}
                             onChange={functionNotes}
                         ></textarea>
-
                         <div className="conBtn">
                             <button onClick={saveNote}>Guardar Nota</button>
                         </div>
-
-
                     </form>
                 </div>
-
-
                 <div className="folders">
                     <div className="cardDocumentos">
                         <div className="card-details">
@@ -124,7 +126,6 @@ const ContenidoCliente = () => {
                         </div>
                         <button onClick={funtionDocument} class="card-button">Ver</button>
                     </div>
-
                     <div className="cardDocumentos">
                         <div className="card-details">
                             <p className="text-title">Historial</p>
@@ -132,12 +133,7 @@ const ContenidoCliente = () => {
                         </div>
                         <button onClick={funtionHistorial} className="card-button">Ver</button>
                     </div>
-
-
                 </div>
-
-
-
             </div>
         </div>
     );
