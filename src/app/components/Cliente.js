@@ -34,7 +34,7 @@ const Cliente = () => {
             info:
                 "Reparacion de celular",
         },{
-            name: "Villalobos",
+            name: "Villaloboss",
             info:
                 "Actualizacion de Ios",
         },{
