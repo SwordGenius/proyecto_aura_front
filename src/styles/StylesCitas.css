@@ -9,8 +9,17 @@
     justify-content: space-between;
     align-items: center;
     font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
 }
-
+.seccion-usuario1 h2{
+    font-family: roboto;
+    font-weight: 300;
+    
+}
 
 .seccion-paciente {
     display: flex;

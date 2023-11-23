@@ -65,11 +65,11 @@
 
 .container label input {
     position: absolute;
-    left: -9999px;
+    left: -990px;
 }
 
 .container label input:checked + span {
-    background-color: #6fc5ff;
+    background-color: #41a7eb;
     color: white;
 }
 
