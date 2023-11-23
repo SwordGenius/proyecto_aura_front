@@ -1,17 +1,15 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import "../../styles/StylesDocumentos.css";
-
 import Link from "next/link";
 import Swal from "sweetalert2";
 import axios from "axios";
 import {useSearchParams} from "next/navigation";
-// import PdfThumbnail from 'react-pdf-thumbnail';
 
 const Documentos = () => {
-    const [isLoading, setisLoading] = useState(true);
+    const [isLoading, setisLoading] = useState(false);
     const [isInformation, setisInformation] = useState(false);
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
     const search = useSearchParams()
 
     useEffect(() => {
@@ -139,7 +137,7 @@ const Documentos = () => {
                             {data.map((pdf, index) => (
                                 <div key={index} className="pdf-item">
                                     <img className="img-pdf" src="/pdf.png" alt="pdf-image"/>
-                                    <p>{pdf.descripcion} <a href={pdf.url}/></p>
+                                    <p>{pdf.tipo_pdf} <a href={pdf.documento_pdf}/></p>
                                 </div>
                             ))}
                         </div>
