@@ -36,49 +36,6 @@ const Documentos = () => {
         }
     });
 
-    const dataExample = [
-        {
-            id: 1,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 2,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 3,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 4,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 5,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 6,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 7,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 8,
-            info: "Juan",
-            img: 25,
-        },
-    ];
-
     const subirpdf = () => {
         Swal.fire({
             title: "Subir Documento",
@@ -138,6 +95,9 @@ const Documentos = () => {
                             <h3>Documentos</h3>
                         </div>
                         <div className="pdf-section">
+                        <button onClick={subirpdf} className="btn-subir">
+                            Subir Documento
+                        </button>
                             <div className="loadingnoInfo">
                                 <p>Cargando</p>
                             </div>
@@ -160,6 +120,9 @@ const Documentos = () => {
                             <h3>Documentos</h3>
                         </div>
                         <div className="pdf-section">
+                        <button onClick={subirpdf} className="btn-subir">
+                            Subir Documento
+                        </button>
                             <div className="loadingnoInfo">
                                 <p>No hay documentos disponible</p>
                             </div>
@@ -191,10 +154,10 @@ const Documentos = () => {
                                         width={70}
                                         height={70}
                                         priority={false}
-                                        src={pdf.documento_pdf}
-                                        alt={pdf.tipo_documento}
+                                        src="/pdf.png"
+                                        alt="pdfimage"
                                     />
-                                    <p>{pdf.tipo_documento}</p>
+                                    <p>{pdf.descripcion}<a href={pdf.url}/></p>
                                 </div>
                             ))}
                         </div>
