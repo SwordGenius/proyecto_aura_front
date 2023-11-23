@@ -1,10 +1,10 @@
 "use client"
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/StylesCliente.css";
 import { useRouter } from "next/navigation";
 import swal from "sweetalert2";
 import axios from "axios";
-import Pusher from "pusher-js";
+/* import Pusher from "pusher-js"; */
 
 const Cliente = () => {
     const navigate = useRouter();
@@ -23,7 +23,7 @@ const Cliente = () => {
 
     const cargarClientes = async () => {
         try {
-            await axios.get("http://localhost:3300/clientes?page="+page+"&&limit=6", {withCredentials: true}).then((response) => {
+            await axios.get("http://localhost:3300/clientes?page=" + page + "&&limit=6", { withCredentials: true }).then((response) => {
                 console.log(response);
                 let clientes = response.data.data;
                 let totalPages = response.data.totalPages;
@@ -44,7 +44,7 @@ const Cliente = () => {
 
         const channel = pusherAgregar.subscribe('clientes');
         channel.bind('agregar', (data) => {
-             swal.fire({
+            swal.fire({
                 icon: "success",
                 title: "Success",
                 text: data
@@ -61,63 +61,63 @@ const Cliente = () => {
             name: "Jhair",
             info:
                 "Endodoncia",
-        },{
+        }, {
             name: "Manuel",
             info:
                 "Reparacion de celular",
-        },{
+        }, {
             name: "Erick",
             info:
                 "Reparacion de celular",
-        },{
+        }, {
             name: "Villalobos",
             info:
                 "Actualizacion de Ios",
-        },{
+        }, {
             name: "Dario",
             info:
                 "Cableado",
-        },{
+        }, {
             name: "Jhair",
             info:
                 "Endodoncia",
-        },{
+        }, {
 
             name: "Jhair",
             info:
                 "Endodoncia",
-        },{
+        }, {
 
             name: "Jhair",
             info:
                 "Endodoncia",
-        },{
+        }, {
 
             name: "Jhair",
             info:
                 "Endodoncia",
-        },{
+        }, {
 
             name: "Jhair",
             info:
                 "Endodoncia",
-        },{
+        }, {
 
 
             name: "Jhair",
             info:
                 "Endodoncia",
-        },{
+        }, {
 
             name: "Jhair",
             info:
                 "Endodoncia",
-        },{
+        }, {
 
             name: "Jhair",
             info:
                 "Endodoncia",
-        },{
+        }, {
 
             name: "Jhair",
             info:
@@ -139,12 +139,12 @@ const Cliente = () => {
 
     async function saveClient() {
         try {
-            await axios.post("http://localhost:3300/clientes",  {
+            await axios.post("http://localhost:3300/clientes", {
                 nombre: clientInfo.nombres,
                 apellido_P: clientInfo.apellidoPaterno,
                 apellido_M: clientInfo.apellidoMaterno,
                 edad: clientInfo.edad,
-            }, { withCredentials : true,}  ).then(async (response) => {
+            }, { withCredentials: true, }).then(async (response) => {
                 console.log(response);
             }).catch(async (error) => {
                 console.log(error);
@@ -172,12 +172,12 @@ const Cliente = () => {
 
     function nextPage() {
         if (page < maxPage)
-        setPage(page+1);
+            setPage(page + 1);
     }
 
     function prevPage() {
         if (page > 1)
-        setPage(page-1);
+            setPage(page - 1);
     }
 
     function handleNameChange(e) {
@@ -221,7 +221,7 @@ const Cliente = () => {
     }
 
 
-  
+
 
     return (
         <div className="container-pacientes">
@@ -243,9 +243,9 @@ const Cliente = () => {
                     .slice(currentCardIndex, currentCardIndex + cardsPerPage)
                     .map((data) => (
                         // eslint-disable-next-line react/jsx-key
-                        <div 
-                        key={data.id}
-                        className="section_our_solution">
+                        <div
+                            key={data.id}
+                            className="section_our_solution">
                             <div className="row">
                                 <div className="col-lg-12 col-md-12 col-sm-12">
                                     <div className="our_solution_category">
@@ -253,7 +253,7 @@ const Cliente = () => {
                                             <div className="solution_card">
                                                 <div className="hover_color_bubble"></div>
                                                 <div className="so_top_icon">
-                                                    {data.fotografia? <img src={data.fotografia} alt="..."/> : <svg xmlns="http://www.w3.org/2000/svg" width="40" viewBox="0 0 512 512" height="50" id="Layer_1">
+                                                    {data.fotografia ? <img src={data.fotografia} alt="..." /> : <svg xmlns="http://www.w3.org/2000/svg" width="40" viewBox="0 0 512 512" height="50" id="Layer_1">
                                                         <g>
                                                             <g>
                                                                 <g>
@@ -320,9 +320,9 @@ const Cliente = () => {
             </div>
 
             <div className="pagination-buttons">
-                    <button className="btns-sig-atr" onClick={prevPage}>Atrás</button>
+                <button className="btns-sig-atr" onClick={prevPage}>Atrás</button>
 
-                    <button className="btns-sig-atr"  onClick={nextPage}>Siguiente</button>
+                <button className="btns-sig-atr" onClick={nextPage}>Siguiente</button>
 
             </div>
 

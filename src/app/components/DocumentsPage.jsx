@@ -11,91 +11,23 @@ import {useSearchParams} from "next/navigation";
 const Documentos = () => {
     const [isLoading, setisLoading] = useState(true);
     const [isInformation, setisInformation] = useState(false);
-    const [response, setResponse] = useState(false);
-    const [data, setData] = useState([{id: 0, documento_pdf: "", tipo_documento: ""}]);
-    const [images, setImages] = useState([]);
+    const [data, setData] = useState();
     const search = useSearchParams()
 
-    const cargarDocumentos = async () => {
-        try {
-            const response = await axios.get("http://localhost:3300/documentos", {
-                withCredentials: true,
-            })
-
-            let documentos = response.data.data;
-            setData(documentos);
-            // let imagenes = [];
-            // documentos.map(async (documento) => {
-            //     const {error, imageUrl} = await PdfThumbnail(documento.documento_pdf,
-            //         {
-            //             fileName: documento.tipo_documento,
-            //             pageNo: 1,
-            //             width: 70,
-            //             height: 70,
-            //         }
-            //     );
-            //     if (!error) {
-            //         imagenes.push(imageUrl);
-            //     }
-            // });
-            // setImages(imagenes);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     useEffect(() => {
-        cargarDocumentos()
-        setTimeout(() => {
+        axios.get("http://localhost:3300/documentos",{
+            withCredentials: true,
+        }).then((response) => {
+            setData(response.data.data);
             setisLoading(false);
-        }, 1000);
-        if (response) {
-            setisInformation(true);
-        }
+            if(data.length <= 0) {
+                setisInformation(true);
+            }
+        }).catch((err)=>{
+            console.log(err);
+        })
     }, [data]);
 
-    const dataExample = [
-        {
-            id: 1,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 2,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 3,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 4,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 5,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 6,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 7,
-            info: "Juan",
-            img: 25,
-        },
-        {
-            id: 8,
-            info: "Juan",
-            img: 25,
-        },
-    ];
 
     const subirpdf = () => {
         Swal.fire({
@@ -206,8 +138,8 @@ const Documentos = () => {
                         <div className="pdf-grid">
                             {data.map((pdf, index) => (
                                 <div key={index} className="pdf-item">
-                                    <img src={images[index]} alt={pdf.tipo_documento}/>
-                                    <p>{pdf.tipo_documento}</p>
+                                    <img className="img-pdf" src="/pdf.png" alt="pdf-image"/>
+                                    <p>{pdf.descripcion} <a href={pdf.url}/></p>
                                 </div>
                             ))}
                         </div>
