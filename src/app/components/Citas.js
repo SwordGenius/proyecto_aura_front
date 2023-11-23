@@ -124,7 +124,7 @@ const Citas = () => {
     return (
         <div className="citas-contenedor">
 
-            <div className="seccion-usuario">
+            <div className="seccion-usuario1">
                 <h2>Citas disponibles </h2>
                 <h2>Hola, {miNombre}</h2>
             </div>
