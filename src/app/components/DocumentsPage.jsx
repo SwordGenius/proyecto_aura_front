@@ -7,10 +7,10 @@ import axios from "axios";
 import {useSearchParams} from "next/navigation";
 
 const Documentos = () => {
-    const [isLoading, setisLoading] = useState(false);
+    const [isLoading, setisLoading] = useState(true);
     const [isInformation, setisInformation] = useState(false);
     const [data, setData] = useState([]);
-    const search = useSearchParams()
+    const search = useSearchParams();
 
     useEffect(() => {
         axios.get("http://localhost:3300/documentos",{
@@ -87,6 +87,9 @@ const Documentos = () => {
                             <h3>Documentos</h3>
                         </div>
                         <div className="pdf-section">
+                        <button onClick={subirpdf} className="btn-subir">
+                            Subir Documento
+                        </button>
                             <div className="loadingnoInfo">
                                 <p>Cargando</p>
                             </div>
@@ -109,6 +112,9 @@ const Documentos = () => {
                             <h3>Documentos</h3>
                         </div>
                         <div className="pdf-section">
+                        <button onClick={subirpdf} className="btn-subir">
+                            Subir Documento
+                        </button>
                             <div className="loadingnoInfo">
                                 <p>No hay documentos disponible</p>
                             </div>
