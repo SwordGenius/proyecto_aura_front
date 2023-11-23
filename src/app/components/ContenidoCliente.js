@@ -128,7 +128,10 @@ const ContenidoCliente = ({id}) => {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:3300/clientes/${id}`).then((response) => {
+                console.log(id)
+                axios.delete(`http://localhost:3300/clientes/${id}`, {
+                    withCredentials: true
+                }).then((response) => {
                     console.log(response);
                 }).catch((error) => {
                     console.log(error);

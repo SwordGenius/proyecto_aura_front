@@ -3,7 +3,8 @@ import React, {useEffect, useState} from "react";
 import "../../styles/StylesCliente.css";
 import { useRouter } from "next/navigation";
 import swal from "sweetalert2";
-import axios, {Axios} from "axios";
+import axios from "axios";
+import Pusher from "pusher-js";
 
 const Cliente = () => {
     const navigate = useRouter();
@@ -37,6 +38,18 @@ const Cliente = () => {
         }
     }
     useEffect(() => {
+        const pusherAgregar = new Pusher('', {
+            cluster: ''
+        });
+
+        const channel = pusherAgregar.subscribe('clientes');
+        channel.bind('agregar', (data) => {
+             swal.fire({
+                icon: "success",
+                title: "Success",
+                text: data
+            })
+        });
         cargarClientes().then(r => console.log("Clientes cargados"));
     }, [page]);
 
@@ -133,11 +146,6 @@ const Cliente = () => {
                 edad: clientInfo.edad,
             }, { withCredentials : true,}  ).then(async (response) => {
                 console.log(response);
-                await swal.fire({
-                    icon: "success",
-                    title: "Success",
-                    text: "Cliente registrado correctamente",
-                });
             }).catch(async (error) => {
                 console.log(error);
                 await swal.fire({
@@ -155,7 +163,7 @@ const Cliente = () => {
                 text: "Error al registrar cliente"
             });
         }
-        closeModal();
+        closeAddClientModal();
     }
 
     function viewClient(id) {
@@ -346,14 +354,14 @@ const Cliente = () => {
                         <input type="text" value={clientInfo.nombres} onChange={handleNameChange} />
 
                         <label>Apellido Paterno:</label>
-                        <input type="text" value={clientInfo.apellidoPaterno} onChange={handleNameChange} />
+                        <input type="text" value={clientInfo.apellidoPaterno} onChange={handleLastNameChange} />
 
                         <label>Apellido Materno:</label>
-                        <input type="text" value={clientInfo.apellidoMaterno} onChange={handleNameChange} />
+                        <input type="text" value={clientInfo.apellidoMaterno} onChange={handleMaternoChange} />
 
                         <label>Edad:</label>
 
-                        <input type="text" value={clientInfo.edad} onChange={handleNameChange} />
+                        <input type="text" value={clientInfo.edad} onChange={handleEdadChange} />
 
                         <button type="button" onClick={saveClient}>
                             Aceptar

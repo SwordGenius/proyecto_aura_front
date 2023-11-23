@@ -12,7 +12,7 @@ const Contfiguracion = () => {
     const [content, setContent] = useState(null);
     const [nameUser, setNameUser] = useState("Manuel Arturo");
     const [nameEmail, setNameEmail] = useState("backend developer");
-    const [namePassword, setNamePassword] = useState("backend developer");
+    const [namePassword, setNamePassword] = useState("Worker");
     const [isEditing, setIsEditing] = useState(false);
     const [editedName, setEditedName] = useState(nameUser);
     const [editedEmail, setEditedEmail] = useState(nameEmail);

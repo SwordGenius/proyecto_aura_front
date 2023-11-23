@@ -1,17 +1,19 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import "../../styles/StylesDocumentos.css";
-import Image from "next/image";
+
 import Link from "next/link";
 import Swal from "sweetalert2";
 import axios from "axios";
 import {useSearchParams} from "next/navigation";
+// import PdfThumbnail from 'react-pdf-thumbnail';
 
 const Documentos = () => {
     const [isLoading, setisLoading] = useState(true);
     const [isInformation, setisInformation] = useState(false);
     const [response, setResponse] = useState(false);
-    const [data, setData] = useState([]);
+    const [data, setData] = useState([{id: 0, documento_pdf: "", tipo_documento: ""}]);
+    const [images, setImages] = useState([]);
     const search = useSearchParams()
 
     const cargarDocumentos = async () => {
@@ -19,22 +21,38 @@ const Documentos = () => {
             const response = await axios.get("http://localhost:3300/documentos", {
                 withCredentials: true,
             })
+
             let documentos = response.data.data;
             setData(documentos);
+            // let imagenes = [];
+            // documentos.map(async (documento) => {
+            //     const {error, imageUrl} = await PdfThumbnail(documento.documento_pdf,
+            //         {
+            //             fileName: documento.tipo_documento,
+            //             pageNo: 1,
+            //             width: 70,
+            //             height: 70,
+            //         }
+            //     );
+            //     if (!error) {
+            //         imagenes.push(imageUrl);
+            //     }
+            // });
+            // setImages(imagenes);
         } catch (error) {
             console.log(error);
         }
     }
 
     useEffect(() => {
-        cargarDocumentos().then(r => console.log(r));
+        cargarDocumentos()
         setTimeout(() => {
             setisLoading(false);
         }, 1000);
         if (response) {
             setisInformation(true);
         }
-    });
+    }, [data]);
 
     const dataExample = [
         {
@@ -113,10 +131,11 @@ const Documentos = () => {
                     formData.append("documento_pdf", file);
                     formData.append("tipo_documento", descripcion);
                     formData.append("id_cliente", search.get("id"));
+
                     axios.post("http://localhost:3300/documentos", formData, {
                         withCredentials: true,
                     }).then(r => {
-                        console.log(r.data)
+                        console.log(r)
                     });
                 } catch (error) {
                     Swal.fire("Error", "No se pudo subir el documento", "error");
@@ -187,13 +206,7 @@ const Documentos = () => {
                         <div className="pdf-grid">
                             {data.map((pdf, index) => (
                                 <div key={index} className="pdf-item">
-                                    <Image
-                                        width={70}
-                                        height={70}
-                                        priority={false}
-                                        src={pdf.documento_pdf}
-                                        alt={pdf.tipo_documento}
-                                    />
+                                    <img src={images[index]} alt={pdf.tipo_documento}/>
                                     <p>{pdf.tipo_documento}</p>
                                 </div>
                             ))}
