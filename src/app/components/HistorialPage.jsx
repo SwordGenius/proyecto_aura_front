@@ -3,16 +3,19 @@ import React, { useState, useEffect} from "react";
 import "../../styles/StylesHistorial.css"
 import Link from "next/link";
 import axios from "axios";
+import {useSearchParams} from "next/navigation";
 const Historial = () => {
 
     const [isLoading, setisLoading] = useState(true);
     const [isInformation, setisInformation] = useState(false);
     const [response, setResponse] = useState(false);   //falta conectarlo al back para que cuando haya informacion si muestre la info y cuando no tenga nada de info muestre ese loading
     const [data, setData] = useState([]);
+    const search = useSearchParams();
 
     const cargarHistorial = async () =>{
         try{
-            const response = await axios.get("http://localhost:3300/historial",{
+            const id = search.get("id");
+            const response = await axios.get(`http://localhost:3300/historial?${id}`,{
                 withCredentials: true,
             })
             let historial = response.data.data;

@@ -48,7 +48,7 @@ const ContenidoCliente = ({id}) => {
     }
 
     function funtionHistorial() {
-        navigate.push(`/historial`);
+        navigate.push(`/historial?id=${id}`);
     }
 
 

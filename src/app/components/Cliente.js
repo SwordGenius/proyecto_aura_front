@@ -38,18 +38,18 @@ const Cliente = () => {
         }
     }
     useEffect(() => {
-        const pusherAgregar = new Pusher('', {
-            cluster: ''
-        });
-
-        const channel = pusherAgregar.subscribe('clientes');
-        channel.bind('agregar', (data) => {
-             swal.fire({
-                icon: "success",
-                title: "Success",
-                text: data
-            })
-        });
+        // const pusherAgregar = new Pusher('', {
+        //     cluster: ''
+        // });
+        //
+        // const channel = pusherAgregar.subscribe('clientes');
+        // channel.bind('agregar', (data) => {
+        //      swal.fire({
+        //         icon: "success",
+        //         title: "Success",
+        //         text: data
+        //     })
+        // });
         cargarClientes().then(r => console.log("Clientes cargados"));
     }, [page]);
 
@@ -148,11 +148,6 @@ const Cliente = () => {
                 console.log(response);
             }).catch(async (error) => {
                 console.log(error);
-                await swal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: "Error al registrar cliente"
-                });
             });
 
         } catch (error) {
