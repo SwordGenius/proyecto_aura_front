@@ -18,7 +18,8 @@ const Documentos = () => {
 
     const cargarDocumentos = async () => {
         try {
-            const response = await axios.get("http://localhost:3300/documentos", {
+            const id = search.get("id");
+            const response = await axios.get("http://localhost:3300/documentos?id="+id, {
                 withCredentials: true,
             })
 
@@ -205,10 +206,12 @@ const Documentos = () => {
                         </button>
                         <div className="pdf-grid">
                             {data.map((pdf, index) => (
-                                <div key={index} className="pdf-item">
-                                    <img src={images[index]} alt={pdf.tipo_documento}/>
-                                    <p>{pdf.tipo_documento}</p>
-                                </div>
+                                <Link href={pdf.documento_pdf} key={index}>
+                                    <div key={index} className="pdf-item">
+                                        <img className="img-pdf" src="/pdf.png" alt="pdf-image"/>
+                                        <p>{pdf.tipo_documento}</p>
+                                    </div>
+                                </Link>
                             ))}
                         </div>
                     </div>
