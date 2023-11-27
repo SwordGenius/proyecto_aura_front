@@ -147,6 +147,11 @@ const Cliente = () => {
                 console.log(response);
             }).catch(async (error) => {
                 console.log(error);
+                await swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Error al registrar cliente"
+                });
             });
 
             await axios.post("http://localhost:3300/message", {
