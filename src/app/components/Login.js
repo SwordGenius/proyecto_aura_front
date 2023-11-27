@@ -20,11 +20,10 @@ function Login() {
     async function signIn(event) {
         event.preventDefault()
         try {
-            Axios.defaults.withCredentials = true;
             await axios.post("http://localhost:3300/auth/login", {
                 email: email,
                 password: password
-            }).then((response) => {
+            }, {withCredentials: true}).then((response) => {
                 console.log(response);
                 navigate.push("/homePageLink")
             }).catch((error) => {

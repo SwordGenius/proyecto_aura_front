@@ -20,6 +20,9 @@ const Cliente = () => {
     const [clientes, setClientes] = useState([]);
     const [page, setPage] = useState(1);
     const [maxPage, setMaxPage] = useState(0);
+    const pusher = new Pusher('85de58124b369482bbb6', {
+        cluster: 'us2'
+    })
 
     const cargarClientes = async () => {
         try {
@@ -38,18 +41,14 @@ const Cliente = () => {
         }
     }
     useEffect(() => {
-        // const pusherAgregar = new Pusher('', {
-        //     cluster: ''
-        // });
-        //
-        // const channel = pusherAgregar.subscribe('clientes');
-        // channel.bind('agregar', (data) => {
-        //      swal.fire({
-        //         icon: "success",
-        //         title: "Success",
-        //         text: data
-        //     })
-        // });
+        const channel = pusher.subscribe('clientes');
+        channel.bind('agregar', (data) => {
+             swal.fire({
+                icon: "success",
+                title: "Success",
+                text: data.message
+            })
+        });
         cargarClientes().then(r => console.log("Clientes cargados"));
     }, [page]);
 
@@ -147,6 +146,15 @@ const Cliente = () => {
             }, { withCredentials : true,}  ).then(async (response) => {
                 console.log(response);
             }).catch(async (error) => {
+                console.log(error);
+            });
+
+            await axios.post("http://localhost:3300/message", {
+                message: "Se ha registrado un nuevo cliente",
+                username: "Admin"
+            }, {withCredentials: true}).then((response) => {
+                console.log(response);
+            }).catch((error) => {
                 console.log(error);
             });
 
