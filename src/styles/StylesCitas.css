@@ -1,0 +1,112 @@
+.citas-contenedor {
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilos para la sección de usuario */
+.seccion-usuario1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+}
+
+
+.seccion-paciente {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin-left: auto;
+    padding-left: 20px;
+}
+
+.contenedor-tarjetas {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+/* Estilos de las tarjetas */
+.tarjeta-notificacion {
+    display: flex;
+    flex-direction: column;
+    isolation: isolate;
+    position: relative;
+    width: 18rem;
+    height: 9rem;
+    background: #29292c;
+    border-radius: 1rem;
+    overflow: hidden;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+}
+
+.tarjeta-notificacion:before {
+    position: absolute;
+    content: "";
+    inset: 0.0625rem;
+    border-radius: 0.9375rem;
+    background: #ffffff;
+    z-index: 2;
+}
+
+.tarjeta-notificacion:after {
+    position: absolute;
+    content: "";
+    width: 0.25rem;
+    inset: 0.65rem auto 0.65rem 0.5rem;
+    border-radius: 0.125rem;
+    background: linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff);
+    transition: transform 300ms ease;
+    z-index: 4;
+}
+
+.tarjeta-notificacion:hover:after {
+    transform: translateX(0.15rem);
+}
+
+.titulo-notificacion {
+    color: #32a6ff;
+    padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: transform 300ms ease;
+    z-index: 5;
+}
+
+.tarjeta-notificacion:hover .titulo-notificacion {
+    transform: translateX(0.15rem);
+}
+
+.cuerpo-notificacion {
+    color: #99999d;
+    padding: 0 1.25rem;
+    transition: transform 300ms ease;
+    z-index: 5;
+}
+
+.brillo-tarjeta,
+.bordo-brillo-tarjeta {
+    position: absolute;
+    width: 20rem;
+    height: 20rem;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle closest-side at center, #00affa, transparent);
+    opacity: 0;
+    transition: opacity 300ms ease;
+}
+
+.brillo-tarjeta {
+    z-index: 3;
+}
+
+.bordo-brillo-tarjeta {
+    z-index: 1;
+}
+
+.tarjeta-notificacion:hover .brillo-tarjeta,
+.tarjeta-notificacion:hover .bordo-brillo-tarjeta {
+    opacity: 0.1;
+}

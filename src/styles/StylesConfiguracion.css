@@ -1,0 +1,148 @@
+.container-Configuracion {
+    width: 100%;
+    height: auto;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 22px;
+
+}
+
+.centered-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    height: 50vh;
+}
+
+/* Estilos de la tarjeta de usuario */
+.carduser {
+    width: 90%;
+    max-width: 590px;
+    background: #ffffff;
+    padding: 2rem 1.5rem;
+    transition: box-shadow .3s ease, transform .2s ease;
+    box-sizing: border-box;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform .2s ease, opacity .2s ease;
+    font-size: 20px;
+}
+
+.card-avatar {
+    --size: 100px;
+    background: linear-gradient(to top, #f1e1c1 0%, #2ba8fb 100%);
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    transition: transform .2s ease;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    color: #333;
+    font-size: 1.5em;
+    font-weight: 600;
+    line-height: 2rem;
+}
+
+.card-subtitle {
+    color: #859ba8;
+    font-size: 0.8em;
+}
+
+.carduser:hover .card-info {
+    transform: translateY(-5%);
+}
+
+.carduser:hover .card-social {
+    transform: translateY(100%);
+    opacity: 1;
+}
+
+.card-social__item svg:hover {
+    fill: #232323;
+    transform: scale(1.1);
+}
+
+.card-avatar:hover {
+    transform: scale(1.1);
+}
+
+/* Botones de eliminar y modificar */
+.card-btns {
+    display: flex;
+    gap: 20px;
+}
+
+.btnOption {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: rgba(255, 255, 255, 0.726);
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.btnOption:hover {
+    background-color: #6fc5ff;
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.btnOption:active {
+    transform: translateY(-1px);
+    background-color: #6fc5ff;
+}
+
+/* Estilos para la ventana flotante de edición */
+.edit-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    max-width: 300px;
+    text-align: center;
+}
+
+.edit-popup input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.edit-popup button {
+    background: #6fc5ff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-popup button:hover {
+    background: #0056b3;
+}
