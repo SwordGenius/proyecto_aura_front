@@ -26,7 +26,7 @@ const Cliente = () => {
 
     const cargarClientes = async () => {
         try {
-            await axios.get("http://localhost:3300/clientes?page="+page+"&&limit=6", {withCredentials: true}).then((response) => {
+            await axios.get("http://50.16.134.143:3300/clientes?page="+page+"&&limit=6", {withCredentials: true}).then((response) => {
                 console.log(response);
                 let clientes = response.data.data;
                 let totalPages = response.data.totalPages;
@@ -138,23 +138,20 @@ const Cliente = () => {
 
     async function saveClient() {
         try {
-            await axios.post("http://localhost:3300/clientes",  {
+            AxiosDefault.withCredentials
+            await axios.post("http://50.16.134.143:3300/clientes",  {
                 nombre: clientInfo.nombres,
                 apellido_P: clientInfo.apellidoPaterno,
                 apellido_M: clientInfo.apellidoMaterno,
                 edad: clientInfo.edad,
-            }, { withCredentials : true,}  ).then(async (response) => {
+            }, { withCredentials : true}  ).then(async (response) => {
                 console.log(response);
             }).catch(async (error) => {
                 console.log(error);
-                await swal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: "Error al registrar cliente"
-                });
+
             });
 
-            await axios.post("http://localhost:3300/message", {
+            await axios.post("http://50.16.134.143:3300/message", {
                 message: "Se ha registrado un nuevo cliente",
                 username: "Admin"
             }, {withCredentials: true}).then((response) => {

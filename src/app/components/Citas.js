@@ -19,11 +19,11 @@ const Citas = () => {
 
     const cargarCitar =  async () => {
         try {
-            axios.get(`http://localhost:3300/citas?page=${page}&&limit=12`).then((response) => {
+            axios.get(`http://50.16.134.143:3300/citas?page=${page}&&limit=12`).then((response) => {
                 console.log(response);
                 let citaIndexada = response.data.data;
                 for (let cita in citaIndexada){
-                    axios.get(`http://localhost:3300/clientes/${citaIndexada[cita].id_cliente}`).then((response) => {
+                    axios.get(`http://50.16.134.143:3300/clientes/${citaIndexada[cita].id_cliente}`).then((response) => {
                         console.log(response);
                         citaIndexada[cita].cliente = response.data.cliente;
                         console.log(citaIndexada[cita])

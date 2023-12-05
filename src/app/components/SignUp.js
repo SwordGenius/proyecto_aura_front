@@ -16,7 +16,7 @@ function Login() {
     async function signUp(event) {
         event.preventDefault();
         try {
-            await axios.post("http://localhost:3300/usuarios", {
+            await axios.post("http://50.16.134.143:3300/usuarios", {
                 email: email,
                 password: password,
                 nombre: name
@@ -31,7 +31,7 @@ function Login() {
                 text: "Usuario registrado correctamente",
 
             });
-            await axios.post("http://localhost:3300/auth/login", {
+            await axios.post("http://50.16.134.143:3300/auth/login", {
                 email: email,
                 password: password
             },{withCredentials: true}).then((response) => {

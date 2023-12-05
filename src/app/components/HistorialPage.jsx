@@ -15,7 +15,7 @@ const Historial = () => {
     const cargarHistorial = async () =>{
         try{
             const id = search.get("id");
-            const response = await axios.get(`http://localhost:3300/historial?${id}`,{
+            const response = await axios.get(`http://50.16.134.143:3300/historial?${id}`,{
                 withCredentials: true,
             })
             let historial = response.data.data;
