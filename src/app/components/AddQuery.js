@@ -193,7 +193,7 @@ const AddQuerry = () => {
                                     <p>Lista de clientes</p>
                                     <ul>
                                         {clientes.map((cliente, index) => (
-                                            <div>
+                                            <div key={index}>
                                                 <li key={index}>{cliente.nombre}</li>
                                                 <button onClick={(event) => asignarCliente( event, cliente)}>Seleccionar</button>
                                             </div>

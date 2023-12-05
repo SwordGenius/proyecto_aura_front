@@ -1,0 +1,14 @@
+{
+  "/_not-found": "app/_not-found.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/addCitasLink/page": "app/addCitasLink/page.js",
+  "/contenidoClienteLink/page": "app/contenidoClienteLink/page.js",
+  "/contentLink/page": "app/contentLink/page.js",
+  "/documentosLink/page": "app/documentosLink/page.js",
+  "/historial/page": "app/historial/page.js",
+  "/guideLink/page": "app/guideLink/page.js",
+  "/loginLink/page": "app/loginLink/page.js",
+  "/homePageLink/page": "app/homePageLink/page.js",
+  "/signUpLink/page": "app/signUpLink/page.js"
+}
