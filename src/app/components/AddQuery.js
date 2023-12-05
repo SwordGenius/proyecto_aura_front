@@ -29,7 +29,7 @@ const AddQuerry = () => {
     }
     const cargarClientes = async () => {
         try {
-            await axios.get("http://localhost:3300/clientes", {withCredentials: true}).then((response) => {
+            await axios.get("http://50.16.134.143:3300/clientes", {withCredentials: true}).then((response) => {
                 console.log(response);
                 let clientes = response.data.data;
                 setClientes(clientes);
@@ -80,7 +80,7 @@ const AddQuerry = () => {
 
     const agregarCliente = () => {
         try {
-            axios.post("http://localhost:3300/clientes", clientInfo, {withCredentials: true}).then((response) => {
+            axios.post("http://50.16.134.143:3300/clientes", clientInfo, {withCredentials: true}).then((response) => {
                 console.log(response);
                 Swal.fire(
                     'Exito',
@@ -112,7 +112,7 @@ const AddQuerry = () => {
         event.preventDefault();
 
         try {
-            axios.post("http://localhost:3300/citas", {
+            axios.post("http://50.16.134.143:3300/citas", {
                 motivo: motivo,
                 fecha: fecha,
                 id_cliente: id

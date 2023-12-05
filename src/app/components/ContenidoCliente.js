@@ -25,7 +25,7 @@ const ContenidoCliente = ({id}) => {
 
     const cargarCliente = async () => {
         try {
-            const response = await axios.get(`http://localhost:3300/clientes/${id}`);
+            const response = await axios.get(`http://50.16.134.143:3300/clientes/${id}`);
             let clienteindexado = response.data.cliente;
             console.log(clienteindexado)
             clienteindexado.notas = ""
@@ -60,7 +60,7 @@ const ContenidoCliente = ({id}) => {
             reemplazoNota.notas = notes;
             setCliente(reemplazoNota);
             console.log(reemplazoNota)
-            axios.patch(`http://localhost:3300/clientes/${id}`, reemplazoNota).then((response) => {
+            axios.patch(`http://50.16.134.143:3300/clientes/${id}`, reemplazoNota).then((response) => {
                 console.log(response);
             }).catch((error) => {
                 console.log(error);
@@ -97,7 +97,7 @@ const ContenidoCliente = ({id}) => {
             reemplazoEdad.edad = editedEdad;
             setCliente(reemplazoEdad);
             console.log(reemplazoEdad)
-            axios.patch(`http://localhost:3300/clientes/${id}`, reemplazoEdad).then((response) => {
+            axios.patch(`http://50.16.134.143:3300/clientes/${id}`, reemplazoEdad).then((response) => {
                 console.log(response);
             }).catch((error) => {
                 console.log(error);
@@ -129,7 +129,7 @@ const ContenidoCliente = ({id}) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 console.log(id)
-                axios.delete(`http://localhost:3300/clientes/${id}`, {
+                axios.delete(`http://50.16.134.143:3300/clientes/${id}`, {
                     withCredentials: true
                 }).then((response) => {
                     console.log(response);
