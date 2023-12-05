@@ -1,0 +1,14 @@
+{
+  "/_not-found": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/addCitasLink/page": "/addCitasLink",
+  "/contenidoClienteLink/page": "/contenidoClienteLink",
+  "/contentLink/page": "/contentLink",
+  "/documentosLink/page": "/documentosLink",
+  "/historial/page": "/historial",
+  "/guideLink/page": "/guideLink",
+  "/loginLink/page": "/loginLink",
+  "/homePageLink/page": "/homePageLink",
+  "/signUpLink/page": "/signUpLink"
+}
