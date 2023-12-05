@@ -31,7 +31,7 @@ const Contfiguracion = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 try {
-                    axios.delete(`http://localhost:3300/usuarios/${id}`).then((response) => {
+                    axios.delete(`http://50.16.134.143:3300/usuarios/${id}`).then((response) => {
                         console.log(response);
                     }).catch((error) => {
                         console.log(error);
@@ -56,7 +56,7 @@ const Contfiguracion = () => {
 
     const setIdUser =  async () => {
         try {
-            await axios.get('http://localhost:3300/usuarios/cookie', {withCredentials: true}).then((response) => {
+            await axios.get('http://50.16.134.143:3300/usuarios/cookie', {withCredentials: true}).then((response) => {
                 console.log(response);
                 let IdResponse = response.data.id;
                 setId(IdResponse);
@@ -77,7 +77,7 @@ const Contfiguracion = () => {
         setNameEmail(editedEmail);
         setNamePassword(editedPassword);
         try {
-            axios.patch(`http://localhost:3300/usuarios/${id}`, {
+            axios.patch(`http://50.16.134.143:3300/usuarios/${id}`, {
                 nombre: editedName,
                 correo: editedEmail,
                 password: editedPassword

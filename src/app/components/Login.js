@@ -20,7 +20,7 @@ function Login() {
     async function signIn(event) {
         event.preventDefault()
         try {
-            await axios.post("http://localhost:3300/auth/login", {
+            await axios.post("http://50.16.134.143:3300/auth/login", {
                 email: email,
                 password: password
             }, {withCredentials: true}).then((response) => {
